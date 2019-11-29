@@ -15,6 +15,11 @@
     <p>Card family: <input type="text" name="family" /></p>
     <p><input type="submit" value="Add new card"></p>
   </form>
+  <form action="delete_card.php" method="delete">
+    <p>Card ID: <input type="text" name="id_carte" /></p>
+  <p><input type="submit" value="Delete card"></p>
+  </form>
+  <?php require("./display_cards.php"); ?>
 </body>
 
 </html>
