@@ -1,3 +1,4 @@
+
  <?php
   $login = 'educhemin001';
   $db_pwd = 'SGBD_Quintessence';
