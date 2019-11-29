@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Tournois
 (
     id_tournoi			            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     lieu                            NVARCHAR(50)		not null,
-    date                            TIMESTAMP	        not null,
+    date_tournoi                    TIMESTAMP	        not null,
     type_tournoi                    NVARCHAR(50)
 )
 
