@@ -2,32 +2,23 @@
 
 include "../connect.php";
 
-// Required field names
-$required = array('title', 'type', 'nature', 'family');
+$requete = "SELECT *
+            FROM Joueurs
+            INNER JOIN Deck on Joueurs.";
 
-// Loop over field names, make sure each one exists and is not empty
-$error = false;
-foreach($required as $field) {
-  if (empty($_POST[$field])) {
-    $error = true;
-  }
-}
+ if($res = $connection->query($requete))
+ /* ... on récupère un tableau stockant le résultat */
+    while ($carte =  $res->fetch_assoc()) {
+      echo "\t".'<tr><td>'.$carte['titre'].'</td>';
+        echo '<td>'.$carte['id_carte'].'</td>';
+      echo '<td>'.$carte['type'].'</td>';
+      echo '<td>'.$carte['nature'].'</td>';
+      echo '<td>'.$carte['famille'].'</td>';
+      echo '</tr>'."\n";
+    }
+     /*liberation de l'objet requete:*/
+     $res->free();
+     /*fermeture de la connexion avec la base*/
+     $connection->close();
 
-if ($error) {
-  echo "All fields are required.";
-} else {
-  echo "Proceed...";
-}
-
-if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille) VALUES (?, ?, ?, ?)")) {
-    
-    $stmt->bindParam(1, $_POST['title']);
-    $stmt->bindParam(2, $_POST['type']);
-    $stmt->bindParam(3, $_POST['nature']);
-    $stmt->bindParam(4, $_POST['family']);
-
-    $stmt->execute();
-    $stmt->close();
-}
-$connection->close();
-?>
+ ?>
