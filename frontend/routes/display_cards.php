@@ -1,8 +1,8 @@
 <?php
 
-include "connect.php"
+include "../connect.php";
 
-$requete = "SELECT * FROM Cartes"
+$requete = "SELECT * FROM Cartes";
 
  if($res = $connection->query($requete))
  /* ... on récupère un tableau stockant le résultat */

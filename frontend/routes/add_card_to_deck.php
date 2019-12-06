@@ -1,7 +1,8 @@
 <?php
 
-include "connect.php"
+include "../connect.php";
 
+/* verifie qu'on a rempli les champs necessaires */
 $required = array('id_deck', 'id_carte');
 
 $error = false;
@@ -17,11 +18,14 @@ if ($error) {
   echo "Proceed...";
 }
 
-if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille) VALUES (?, ?, ?, ?)")) {
-//insert into linked tables ?
+if ($stmt = $connection->prepare("INSERT INTO Deck_contient_carte VALUES (?, ?)")) {
+
+    $stmt->bindParam(1, $_POST['id_deck']);
+    $stmt->bindParam(2, $_POST['id_carte']);
 
     $stmt->execute();
     $stmt->close();
 }
 $connection->close();
+
 ?>

@@ -1,14 +1,16 @@
 <?php
 
-require_once "router.php";
+require_once "./src/router.php";
 
 route('/', function () {
-    return "Project Carteirb Home page";
+    readfile('src/route/login.html');
 });
+
 
 route('/login', function () {
     return "Welcome to Login page";
 });
+
 
 $action = $_SERVER['REQUEST_URI'];
 dispatch($action);
