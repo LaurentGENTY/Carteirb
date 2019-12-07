@@ -132,6 +132,7 @@ CREATE TABLE IF NOT EXISTS Carte_est_edition
 (
     id_carte			            INT UNSIGNED			not null,
     id_edition			            INT UNSIGNED		not null,
+    cote                            INT UNSIGNED        not null,
     CONSTRAINT PK_id_carte_edition PRIMARY KEY(id_carte,id_edition),
     FOREIGN KEY (id_edition) REFERENCES Editions(id_edition),
     FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte)
@@ -142,6 +143,7 @@ CREATE TABLE IF NOT EXISTS Exemplaires
 (
     id_exemplaire	                INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date_acquisition        	    TIMESTAMP       not null,
+    date_impression        	        TIMESTAMP       not null,
     mode_acquisition		        NVARCHAR(20)    not null,
     date_perte      			    TIMESTAMP,	
     qualite         			    INT(3)		    not null,
