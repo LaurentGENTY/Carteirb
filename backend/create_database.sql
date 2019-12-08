@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS Cartes
 CREATE TABLE IF NOT EXISTS Caracteristiques
 (
    id_caracteristique              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-   type_caracteristique            NVARCHAR(20)         not null,
-   valeur_caracteristique          INT(3)               not null
+   type_caracteristique            NVARCHAR(10)         not null,
+   valeur_caracteristique          NVARCHAR(512)               not null
 )  ENGINE = INNODB;
 
 
