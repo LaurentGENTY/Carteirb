@@ -1,21 +1,18 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 -- Supprimer les tables si elles existent
-DROP TABLE IF EXISTS Carte_a_caracteristiques;
 
-DROP TABLE IF EXISTS Partie_utilise_decks;
+DROP TABLE IF EXISTS Carte_a_caracteristique;
 
-DROP TABLE IF EXISTS Deck_contient_cartes;
+DROP TABLE IF EXISTS Partie_utilise_deck;
+
+DROP TABLE IF EXISTS Deck_contient_carte;
 
 DROP TABLE IF EXISTS Carte_est_edition;
 
 DROP TABLE IF EXISTS Exemplaires;
 
-DROP TABLE IF EXISTS Parties;
-
 DROP TABLE IF EXISTS Decks;
-
-DROP TABLE IF EXISTS Tournois;
 
 DROP TABLE IF EXISTS Joueurs;
 
@@ -24,6 +21,11 @@ DROP TABLE IF EXISTS Editions;
 DROP TABLE IF EXISTS Cartes;
 
 DROP TABLE IF EXISTS Caracteristiques;
+
+
+DROP TABLE IF EXISTS Parties;
+
+DROP TABLE IF EXISTS Tournois;
 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -42,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Parties
 (
    id_partie                       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    adversaire                      NVARCHAR(50)		not null,
-   resultat                        NVARCHAR(10),
+   resultat                        ENUM('VICTOIRE','DEFAITE'),
    id_tournoi 			    		INT UNSIGNED        not null
 ) ENGINE = INNODB;
 
@@ -68,8 +70,8 @@ CREATE TABLE IF NOT EXISTS Cartes
 (
    id_carte			            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    titre   		                NVARCHAR(50)		not null,
-   type_carte		                NVARCHAR(50)		not null,
-   nature			                NVARCHAR(50)		not null,
+   type_carte		              ENUM('Monstre','Magie','Piège','XYZ','Fusion') not null,
+   nature			                NVARCHAR(50),
    famille    			            NVARCHAR(50) 	    not null
 ) ENGINE = INNODB;
 
@@ -96,7 +98,7 @@ CREATE TABLE IF NOT EXISTS Exemplaires
    mode_acquisition		        NVARCHAR(20)    not null,
    date_perte      			    TIMESTAMP,
    qualite         			    INT(3)		    not null,
-   effet_impression    		    NVARCHAR(20)    not null,
+   effet_impression    		    ENUM('Commune','Rare', 'Ultra Rare', 'Chromatique','X','Brillante','Collector') not null,
    id_edition			            INT	UNSIGNED		    not null,
    id_carte 			            INT UNSIGNED		    not null,
    id_joueur 		                INT UNSIGNED		    not null
@@ -133,6 +135,9 @@ CREATE TABLE IF NOT EXISTS Carte_est_edition
    PRIMARY KEY(id_carte,id_edition)
 ) ENGINE = INNODB;
 
+ALTER TABLE Editions
+ ADD CONSTRAINT CHK_nb_tirages CHECK(nombre_de_tirage >= 0);
+
 ALTER TABLE Parties
  ADD CONSTRAINT FK_parties_tournoi FOREIGN KEY (id_tournoi) REFERENCES Tournois(id_tournoi) ON DELETE CASCADE;
 
@@ -142,7 +147,9 @@ ALTER TABLE Decks
 ALTER TABLE Exemplaires
  ADD CONSTRAINT FK_exemplaires_edition FOREIGN KEY (id_edition) REFERENCES Editions(id_edition),
    ADD CONSTRAINT FK_exemplaires_carte FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte),
-   ADD CONSTRAINT FK_exemplaires_joueur FOREIGN KEY (id_joueur) REFERENCES Joueurs(id_joueur);
+   ADD CONSTRAINT FK_exemplaires_joueur FOREIGN KEY (id_joueur) REFERENCES Joueurs(id_joueur),
+   ADD CONSTRAINT CHK_qualite CHECK(qualite <= 100 AND qualite >= 0),
+   ADD CONSTRAINT CHK_dates CHECK(date_acquisition <= date_perte);
 
 ALTER TABLE Partie_utilise_deck
  ADD CONSTRAINT FK_partie_deck_deck FOREIGN KEY (id_deck) REFERENCES Decks(id_deck) ON DELETE CASCADE,
@@ -158,4 +165,5 @@ ALTER TABLE Carte_a_caracteristique
 
 ALTER TABLE Carte_est_edition
  ADD CONSTRAINT FK_carte_edition_edition FOREIGN KEY (id_edition) REFERENCES Editions(id_edition) ON DELETE CASCADE,
-   ADD CONSTRAINT FK_carte_edition_carte FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte) ON DELETE CASCADE;
+   ADD CONSTRAINT FK_carte_edition_carte FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte) ON DELETE CASCADE,
+   ADD CONSTRAINT CHK_cote CHECK(cote >= 1);
