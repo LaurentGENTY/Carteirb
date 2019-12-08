@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Caracteristiques
 (
    id_caracteristique              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    type_caracteristique            NVARCHAR(10)         not null,
-   valeur_caracteristique          NVARCHAR(512)               not null
+   valeur_caracteristique          NVARCHAR(1024)               not null
 )  ENGINE = INNODB;
 
 
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS Carte_est_edition
 (
    id_carte			            INT UNSIGNED		not null,
    id_edition			            INT UNSIGNED		not null,
-   cote							INT UNSIGNED		not null,
+   cote							FLOAT(10,2) UNSIGNED		not null,
    PRIMARY KEY(id_carte,id_edition)
 ) ENGINE = INNODB;
 

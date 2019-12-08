@@ -53,6 +53,18 @@ INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Nuzzler Maléfique'
 
 INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Sept outils du bandit','Piège',NULL,'Contre');
 
+-- cartes aucun deck
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Jinzo','Monstre','Ténèbres','Machine');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Buster Blader','Monstre','Terre','Guerrier');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Le Renoncé aux milles yeux','Fusion','Ténèbres','Magicien');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Morphojarre n°2','Monstre','Terre','Rocher');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Démon Megacyber','Monstre','Ténèbres','Guerrier');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Seigneur de la suppresion','Magie',NULL,'Normale');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Limiter Removal','Magie',NULL,'Rapide');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Enterrement prématuré','Magie',NULL,'Équipement');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Appel à l être hanté','Piège',NULL,'Continue');
+INSERT INTO cartes(titre,type_carte,nature,famille) VALUES ('Tornade de poussière','Piège',NULL,'Normale');
+
 -- caracteristiques des cartes
 
 -- yugi
@@ -177,6 +189,62 @@ INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES
 INSERT INTO carte_a_caracteristique VALUES (41,30);
 INSERT INTO carte_a_caracteristique VALUES (31,30);
 
+-- carac des cartes sans Deck
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Tant que cette carte est face recto sur le Terrain, aucune Carte Piège ne peut être Activée. De plus, les effets de toutes les Cartes Piège face recto sont annulés.');
+INSERT INTO carte_a_caracteristique VALUES (42,34);
+INSERT INTO carte_a_caracteristique VALUES (17,34);
+INSERT INTO carte_a_caracteristique VALUES (38,34);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('ATK', '2600');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('DEF', '2300');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Augmentez l ATK de cette carte de 500 points pour chaque monstre de Type Dragon sur le Terrain de votre adversaire et dans son Cimetière.');
+INSERT INTO carte_a_caracteristique VALUES (43,35);
+INSERT INTO carte_a_caracteristique VALUES (44,35);
+INSERT INTO carte_a_caracteristique VALUES (45,35);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('ATK', '0');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('DEF', '0');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Le Renoncé + Idole aux Milles Yeux Tant que cette carte reste face recto sur le Terrain, les autres monstres ne peuvent ni changer leur position, ni attaquer. Ce monstre peut prendre l ATK et la DEF d 1 monstre de votre adversaire sur le Terrain (un monstre face verso se solde par une ATK et une DEF de 0). Traitez le monstre sélectionné comme une Carte Magie d Équipement et utilisez-le pour équiper Le Renoncé aux Milles Yeux. Vous ne pouvez utiliser cet effet qu une fois par tour et vous ne pouvez équiper Le Renoncé aux Milles Yeux qu avec 1 monstre à la fois. Si cette carte est détruite à la suite d un combat, le monstre d Équipement est détruit à la place de celle-ci.');
+INSERT INTO carte_a_caracteristique VALUES (46,36);
+INSERT INTO carte_a_caracteristique VALUES (47,36);
+INSERT INTO carte_a_caracteristique VALUES (48,36);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('ATK', '800');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('DEF', '700');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet Flip', 'Renvoyez toutes les Cartes Monstre du Terrain dans leurs Decks respectifs et mélangez ces derniers. Vous et votre adversaire prenez alors des cartes jusqu à ce que vous ayez tous deux le même nombre de Cartes Monstre qui sont retournés dans chaque Deck. Invoquez Spécialement les monstres de niveau 4 ou moins sur le Terrain en Position de Défense face verso. Le reste des cartes prises sont défaussées au Cimetière.');
+INSERT INTO carte_a_caracteristique VALUES (49,37);
+INSERT INTO carte_a_caracteristique VALUES (50,37);
+INSERT INTO carte_a_caracteristique VALUES (51,37);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('DEF', '1200');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet Flip', 'Si votre adversaire a deux monstres ou plus que vous sur le Terrain, vous pouvez Invoquez cette carte par Invocation Spéciale de votre main.');
+INSERT INTO carte_a_caracteristique VALUES (28,38);
+INSERT INTO carte_a_caracteristique VALUES (52,38);
+INSERT INTO carte_a_caracteristique VALUES (53,38);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Détruisez 1 Carte Monstre face verso et retirez-la du jeu. Si le monstre détruit a un Effet Flip, les 2 joueurs doivent retirer du jeu toutes les Cartes Monstre du même nom dans leurs Decks respectifs. Les Decks sont alors mélangés.');
+INSERT INTO carte_a_caracteristique VALUES (54,39);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Double l ATK de tous les monstres de Type Machine présents à cet instant sur votre Terrain lorsque cette carte est Activée. A la fin de ce tour, tous les monstres affectés par cette carte sont détruits.');
+INSERT INTO carte_a_caracteristique VALUES (55,40);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Payez 800 Life Points. Sélectionnez 1 Carte Monstre de votre Cimetière, Invoquez-la par Invocation Spéciale sur le Terrain en Position d Attaque face recto et équipez-la de cette carte. Lorsque cette carte est détruite, le monstre est également détruit.');
+INSERT INTO carte_a_caracteristique VALUES (56,41);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Sélectionnez un monstre dans votre Cimetière et Invoquez-le Specialement sur votre Terrain en Position d Attaque face recto. Lorsque cette carte est détruite ou retirée du Terrain, le monstre Invoqué est détruit. Si le monstre Invoqué est détruit, cette carte est détruite.');
+INSERT INTO carte_a_caracteristique VALUES (57,42);
+
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Sélectionnez 1 carte face recto dans l une des Zones Carte Magie & Piège et détruisez-la. Ensuite, le contrôleur de la carte détruite Pose 1 Carte Magie ou Piège depuis sa main. Si la carte Posée est détruite et renvoyée au Cimetière, sélectionnez et détruisez 1 carte face recto sur le Terrain');
+INSERT INTO carte_a_caracteristique VALUES (58,43);
+
+-- caracteristiques différentes pour une meme carte
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('ATK', '3200');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('DEF', '3200');
+INSERT INTO caracteristiques(type_caracteristique,valeur_caracteristique) VALUES ('Effet', 'Gagne la partie.');
+INSERT INTO carte_a_caracteristique VALUES (59,1);
+INSERT INTO carte_a_caracteristique VALUES (60,1);
+INSERT INTO carte_a_caracteristique VALUES (61,1);
+
 -- Decks
 
 INSERT INTO Decks (nom_deck, id_joueur) VALUES ('Deck de base : Yugi', 1);
@@ -240,10 +308,10 @@ INSERT INTO Deck_contient_carte VALUES (24,3);
 INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Deck de démarrage Yugi',126,'2002-03-01 00:00:00');
 INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Deck de démarrage Kaiba',126,'2002-03-01 00:00:00');
 INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Deck de démarrage Joey',120,'2002-03-01 00:00:00');
-INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Légende du Dragon Blanc aux Yeux',136,'2002-03-08 00:00:00');
+INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Légende du Dragon Blanc aux Yeux',50,'2002-03-08 00:00:00');
 INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Metal Raider',144,'2002-06-26 00:00:00');
-INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Maître des Magies',200,'2002-09-16 00:00:00');
-INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Serviteur du Pharaon',300,'2002-10-20 00:00:00');
+INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Maître des Magies',35,'2002-09-16 00:00:00');
+INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Serviteur du Pharaon',78,'2002-10-20 00:00:00');
 INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES ('Labyrinthes des Cauchemards',50,'2003-03-01 00:00:00');
 
 -- Carte_est_edition
@@ -318,6 +386,18 @@ INSERT INTO Carte_est_edition VALUES (16,4,5);
 INSERT INTO Carte_est_edition VALUES (26,5,3);
 INSERT INTO Carte_est_edition VALUES (29,6,5);
 INSERT INTO Carte_est_edition VALUES (29,7,3);
+
+-- cartes sans deck dans Editions
+INSERT INTO Carte_est_edition VALUES (34,7,8);
+INSERT INTO Carte_est_edition VALUES (35,7,2);
+INSERT INTO Carte_est_edition VALUES (36,7,4);
+INSERT INTO Carte_est_edition VALUES (37,7,3.5);
+INSERT INTO Carte_est_edition VALUES (38,7,1.25);
+INSERT INTO Carte_est_edition VALUES (39,7,1.1);
+INSERT INTO Carte_est_edition VALUES (40,7,1.1);
+INSERT INTO Carte_est_edition VALUES (41,7,1.2);
+INSERT INTO Carte_est_edition VALUES (42,7,1.5);
+INSERT INTO Carte_est_edition VALUES (43,7,2);
 
 -- Tournois
 INSERT INTO Tournois (lieu, date_tournoi, type_tournoi) VALUES ('Duel Académie', '2019-12-01 12:00:00', 'Triangulaire');
