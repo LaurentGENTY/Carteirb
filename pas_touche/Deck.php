@@ -15,19 +15,16 @@ include "Header.php";
     <div class="add">
         <h2> Ajout d'un deck </h2>
         <p>
-            <form action="#" method="post">
+            <form action="creer_Deck.php" method="post">
                 Titre :
-                <input type="text" name="Titre"/> <br/>
-                Description :
-                <input type="text" name="Description"/> <br/>
-                Auteur :
-                <input type="text" name="Auteur"/> <br/>
+                <input type="text" name="title"/> <br/>
+                <input type="submit" name="submit"/>
             </form>
         </p>
     </div>
     <div class="add">
         <h2> Modifier un deck </h2>
-        Sélection du deck :
+        Sélection du deck : Salut
         <!-- <?php
 
         ?> -->
