@@ -38,14 +38,30 @@ include "Header.php";
             }
             ?> </p>
             <p> Titre :
-                <input type="text" name="Titre"/> <br/>
+              <form action="add_card.php" method="post">
+                <input type="text" name='title'/> <br/>
                 Description :
                 <input type="text" name="Description"/> <br/>
                 Edition :
                 <input type="text" name="Edition"/> <br/>
                 Date :
                 <input type="date" name="Date"/> <br/>
-
+                Nature :
+                <input type="text" name="nature"/> <br/>
+                Famille :
+                <input type="text" name="family"/> <br/>
+                <input type="submit" name="submit" value="Valider" />
+              </form>
+                <?php
+                // if($_POST('submit'))
+                // include 'add_card.php'
+                /*$requete="INSERT INTO `Cartes`(`titre`, `type_carte`, `nature`, `famille`) VALUES (?,?,?,?)",
+                /* Si l'execution est reussie... */
+                /*if($res=$connection->query($requete),)
+                   $res->free();
+                   /*fermeture de la connexion avec la base*/
+                  // $connection->close();
+                ?>
     </div>
     </p>
 </div>
