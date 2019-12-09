@@ -1,14 +1,14 @@
-<?php
+<?php /* testé */
 
 include "../connect.php";
 
-$requete = "SELECT Cartes.*, COUNT(*) AS Nb_utilisateurs
+$requete = "SELECT Cartes.id_carte, Cartes.titre, Cartes.type_carte, Cartes.nature, Cartes.famille, COUNT(Joueurs.id_joueur) AS nbJoueurs
             FROM Cartes
             INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
-            INNER JOIN Deck ON Deck_contient_carte.id_deck = Deck.id_deck
-            INNER JOIN Joueurs ON Deck.id_joueur = Joueurs.id_joueur
-            GROUP BY Cartes.*
-            ORDER BY Nb_utilisateurs DESC";
+            INNER JOIN Decks ON Deck_contient_carte.id_Deck = Decks.id_Deck
+            INNER JOIN Joueurs ON Decks.id_joueur = Joueurs.id_joueur
+            GROUP BY Cartes.id_carte, Cartes.titre, Cartes.type_carte, Cartes.nature, Cartes.famille
+            ORDER BY nbJoueurs DESC";
 
 if($res = $connection->query($requete))
 /* ... on récupère un tableau stockant le résultat */

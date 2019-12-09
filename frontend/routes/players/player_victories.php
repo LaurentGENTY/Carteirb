@@ -1,4 +1,4 @@
-<?php
+<?php /* testé */ 
 
 include "../connect.php";
 

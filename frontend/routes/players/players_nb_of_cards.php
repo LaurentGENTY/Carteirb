@@ -1,4 +1,4 @@
-<?php
+<?php /* testé */
 
 include "../connect.php";
 
@@ -6,7 +6,7 @@ $requete = "SELECT Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(*) AS Nb_c
             FROM Joueurs
             INNER JOIN Exemplaires on Joueurs.id_joueur = Exemplaires.id_joueur
             GROUP BY Joueurs.nom, Joueurs.prenom, Joueurs.pseudo
-            ORDER BY Joueurs.nom asc";
+            ORDER BY Nb_cartes desc";
 
 if($res = $connection->query($requete))
 /* ... on récupère un tableau stockant le résultat */

@@ -35,7 +35,7 @@ SELECT joueurs.id_joueur, joueurs.nom, joueurs.prenom, joueurs.pseudo, COUNT(exe
 FROM joueurs
 INNER JOIN exemplaires ON joueurs.id_joueur = exemplaires.id_joueur
 INNER JOIN editions ON exemplaires.id_edition = editions.id_edition
-WHERE editions.date_impression >= '2000-01-01 00:00:00' OR editions.nombre_de_tirage <= 50
+WHERE editions.date_impression >= '2000-01-01 00:00:00' OR editions.nombre_de_tirage < 100
 GROUP BY joueurs.id_joueur, joueurs.nom, joueurs.prenom, joueurs.pseudo
 ORDER BY nbCartes DESC;
 
@@ -54,7 +54,7 @@ SELECT cartes.id_carte, cartes.titre, cartes.famille, caracteristiques.type_cara
 FROM caracteristiques
 INNER JOIN carte_a_caracteristique ON caracteristiques.id_caracteristique = carte_a_caracteristique.id_caracteristique
 INNER JOIN cartes ON carte_a_caracteristique.id_carte = cartes.id_carte
-WHERE caracteristiques.type_caracteristique = 'ATK' OR caracteristiques.type_caracteristique = 'DEF'
+WHERE caracteristiques.type_caracteristique NOT IN ('Effet', 'Effet Flip')
 GROUP BY cartes.id_carte, cartes.titre, cartes.famille;
 
 -- ajout : trivial

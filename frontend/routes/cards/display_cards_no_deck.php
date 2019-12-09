@@ -1,13 +1,14 @@
-<?php
+<?php /* testé */
 
 include "../connect.php";
 
-$requete = "SELECT *
+$requete = "SELECT Cartes.*
             FROM Cartes
-            MINUS
-            SELECT *
-            FROM Cartes
-            INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte";
+            WHERE Cartes.id_carte NOT IN (
+                SELECT Cartes.id_carte
+                FROM Cartes
+                INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
+            )";
 
  if($res = $connection->query($requete))
  

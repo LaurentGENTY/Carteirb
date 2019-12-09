@@ -22,6 +22,7 @@ $requete = "SELECT Recap.Joueur1, Recap.Joueur2, Recap.Victoires AS Max
                         AND Recap.Victoires = RecapMax.Max_victoires
             ORDER BY Recap.Joueur1";
 
+
 select t1.id, t1.[state] MaxValue
 from yourtable t1
 inner join
