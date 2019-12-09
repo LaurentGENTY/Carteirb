@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Tournois
 CREATE TABLE IF NOT EXISTS Parties
 (
    id_partie                       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-   adversaire                      NVARCHAR(50)		not null,
+   adversaire                      INT UNSIGNED		not null,
    resultat                        ENUM('VICTOIRE','DEFAITE'),
    id_tournoi 			    		INT UNSIGNED        not null
 ) ENGINE = INNODB;
@@ -139,7 +139,8 @@ ALTER TABLE Editions
  ADD CONSTRAINT CHK_nb_tirages CHECK(nombre_de_tirage >= 0);
 
 ALTER TABLE Parties
- ADD CONSTRAINT FK_parties_tournoi FOREIGN KEY (id_tournoi) REFERENCES Tournois(id_tournoi) ON DELETE CASCADE;
+ ADD CONSTRAINT FK_parties_tournoi FOREIGN KEY (id_tournoi) REFERENCES Tournois(id_tournoi) ON DELETE CASCADE,
+ ADD CONSTRAINT FK_parties_adversaire FOREIGN KEY (adversaire) REFERENCES Joueurs(id_joueur) ON DELETE CASCADE;
 
 ALTER TABLE Decks
  ADD CONSTRAINT FK_deck_joueur FOREIGN KEY (id_joueur) REFERENCES Joueurs(id_joueur) ON DELETE CASCADE;
