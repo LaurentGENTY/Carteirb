@@ -2,13 +2,14 @@
 
 include "../connect.php";
 
-$requete = "SELECT Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(*) AS Nb_cartes_rares
+$requete = "SELECT Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(*) AS Nb_victoires
             FROM Joueurs
-            INNER JOIN Exemplaires on Joueurs.id_joueur = Exemplaires.id_joueur
-            INNER JOIN Editions on Exemplaires.id_edition = Editions.id_edition
-            WHERE Editions.nombre_de_tirage < 100 OR YEAR(Exemplaires.date_impression) < 2000
+            INNER JOIN Decks on Joueurs.id_joueur = Decks.id_joueur
+            INNER JOIN Partie_utilise_deck on Decks.id_deck = Partie_utilise_deck.id_deck
+            INNER JOIN Parties ON Partie_utilise_deck.id_partie = Parties.id_partie
+            WHERE Parties.resultat = 'VICTOIRE'
             GROUP BY Joueurs.nom, Joueurs.prenom, Joueurs.pseudo
-            ORDER BY Joueurs.nom asc";
+            ORDER BY Nb_victoires desc";
 
 if($res = $connection->query($requete))
 /* ... on récupère un tableau stockant le résultat */
@@ -16,7 +17,7 @@ if($res = $connection->query($requete))
    echo "\t".'<tr><td>'.$joueur['nom'].'</td>';
    echo '<td>'.$joueur['prenom'].'</td>';
    echo '<td>'.$joueur['pseudo'].'</td>';
-   echo '<td>'.$joueur['Nb_cartes_rares'].'</td>';
+   echo '<td>'.$joueur['Nb_victoires'].'</td>';
    echo '</tr>'."\n";
  }
   /*liberation de l'objet requete:*/

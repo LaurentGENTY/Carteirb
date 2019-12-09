@@ -7,7 +7,8 @@ $requete = "SELECT Cartes.*, COUNT(*) AS Nb_utilisateurs
             INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
             INNER JOIN Deck ON Deck_contient_carte.id_deck = Deck.id_deck
             INNER JOIN Joueurs ON Deck.id_joueur = Joueurs.id_joueur
-            GROUP BY Cartes.*";
+            GROUP BY Cartes.*
+            ORDER BY Nb_utilisateurs DESC";
 
 if($res = $connection->query($requete))
 /* ... on récupère un tableau stockant le résultat */
