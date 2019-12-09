@@ -1,14 +1,17 @@
-<?php
+<?php /* testé */
 
    include "../connect.php";
 
-   $requete = "SELECT *
+   $requete = "SELECT Joueurs.*
                FROM Joueurs
-               MINUS
-               SELECT *
-               FROM Joueurs
-               INNER JOIN Deck on Joueurs.id_joueur = Deck.id_joueur
-               INNER JOIN Partie_utilise_deck on Deck.id_deck = Partie_utilise_deck.id_deck";
+               INNER JOIN Decks on Joueurs.id_joueur = Decks.id_joueur
+               WHERE Decks.id_deck NOT IN (
+                  SELECT Decks.id_deck
+                  FROM Joueurs
+                  INNER JOIN Decks on Joueurs.id_joueur = Decks.id_joueur
+                  INNER JOIN Partie_utilise_deck on Decks.id_deck = Partie_utilise_deck.id_deck
+               )";
+ 
 
     if($res = $connection->query($requete))
     /* ... on récupère un tableau stockant le résultat */

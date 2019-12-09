@@ -1,8 +1,8 @@
-<?php
+<?php /* testé */
 
-include "connect.php"
+include "../connect.php"
 
-$requete = "SELECT * FROM Decks INNER JOIN Utilisateurs USING(id_joueur)"
+$requete = "SELECT * FROM Decks INNER JOIN Joueurs USING(id_joueur)"
 
  if($res = $connection->query($requete))
  /* ... on récupère un tableau stockant le résultat */

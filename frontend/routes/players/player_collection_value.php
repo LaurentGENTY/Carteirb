@@ -1,4 +1,4 @@
-<?php
+<?php /* testé */
 
 include "../connect.php";
 
@@ -24,4 +24,4 @@ if($res = $connection->query($requete))
   /*fermeture de la connexion avec la base*/
   $connection->close();
 
-?>
+?> 
