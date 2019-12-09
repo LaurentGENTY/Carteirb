@@ -50,9 +50,53 @@ include "Header.php";
                 <input type="text" name="nature"/> <br/>
                 Famille :
                 <input type="text" name="family"/> <br/>
+                Type :
+                <input type="text" name="type" value="$_POST['type']" disabled/> <br/>
+                  <?php
+                  echo $_POST["type"];
+                  http_build_query(
+                    array(
+                      'type' => $_POST['type'],
+                    )
+                  );
+                  ?>
                 <input type="submit" name="submit" value="Valider" />
               </form>
-                <?php
+      <?php
+                include "connect.php";
+                echo "<table> <tr> <td>";
+                echo "<input type='text' name='card_name'/> </td>";
+                echo "<td> <select name='card_family'>";
+                $requete="select distinct type_carte from Cartes;";
+                if($res = $connection->query($requete))
+                    /* ... on récupère un tableau stockant le résultat */
+                      while ($card_type =  $res->fetch_assoc()) {
+                          echo "<option value=" . $card_type['type_carte'] .">" .$card_type['type_carte'] ."</option>";
+                      }
+                echo "</select> </td> ";
+                echo "<td> <select name='card_family'>";
+                $requete="select distinct famille from Cartes;";
+                if($res = $connection->query($requete))
+                    while ($card_family =  $res->fetch_assoc()) {
+                        echo "<option value=". $card_family['family'].">".$card_family['family']. "</option>";
+                    }
+                echo "</select></td>";
+                echo "<td> <select name='card_nature'>";
+                $requete="select distinct nature from Cartes;";
+                if($res = $connection->query($requete))
+                    while ($card_nature =  $res->fetch_assoc()) {
+                        echo "<option value=". $card_nature['nature'].">".$card_nature['nature']. "</option>";
+                    }
+                echo "</select></td></tr>";
+                $requete="select * from Cartes;";
+                if($res = $connection->query($requete))
+                    while ($card =  $res->fetch_assoc()) {
+                        echo "<tr> <td>".$card['titre']."(".$card['id_carte'].") </td>";
+                        echo "<td>".$card['type']."</td>";
+                        echo "<td>".$card['famille']."</td>";
+                        echo "<td>".$card['nature']."</td> </tr>";
+                    }
+                $connection->close();
                 // if($_POST('submit'))
                 // include 'add_card.php'
                 /*$requete="INSERT INTO `Cartes`(`titre`, `type_carte`, `nature`, `famille`) VALUES (?,?,?,?)",

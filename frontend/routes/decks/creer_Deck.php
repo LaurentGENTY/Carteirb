@@ -3,12 +3,11 @@
 include "connect.php";
 
 // Required field names
-$required = array('title', 'nature', 'family', 'type');
+$required = array('title');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
 
-echo $_POST['type'];
 
 foreach($required as $field) {
   if (empty($_POST[$field])) {
@@ -22,10 +21,11 @@ if ($error) {
   echo "Proceed...";
 }
 
-
-if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille) VALUES (?, ?, ?, ?);")) {
+if ($stmt = $connection->prepare("INSERT INTO Decks (`nom_deck`, `id_joueur`) VALUES (?, ?);")) {
     //$type = "Monstre";
-    $stmt->bind_param('ssss', $_POST['title'],$_POST['type'],$_POST['nature'],$_POST['family']);
+    echo "Dylan";
+    $auteur = 6;
+    $stmt->bind_param('sd', $_POST['title'],$auteur);
     // $stmt->bindParam(1, $_POST['title']);
     // $stmt->bind_param(2, "Monstre");
     // $stmt->bind_param(3, $_POST['nature']);
@@ -35,6 +35,6 @@ if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature,
     $stmt->close();
 }
 $connection->close();
-//include "Modification.php";
+include "Deck.php";
 exit();
 ?>
