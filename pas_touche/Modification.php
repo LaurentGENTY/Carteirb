@@ -28,6 +28,7 @@ include "Header.php";
             </form>
 
             <?php
+            if(!empty($_POST["type"]))
             if($_POST["type"] == "Monstre"){
                 echo "Attaque :";
                 echo "<input type='number' name='Attaque'/>";
@@ -51,17 +52,13 @@ include "Header.php";
                 Famille :
                 <input type="text" name="family"/> <br/>
                 Type :
-                <input type="text" name="type" value="$_POST['type']" disabled/> <br/>
-                  <?php
-                  echo $_POST["type"];
-                  http_build_query(
-                    array(
-                      'type' => $_POST['type'],
-                    )
-                  );
-                  ?>
+                <input type="text" name="Type" hidden placeholder=<?php echo $_POST["type"]?> value=<?php if(!empty($_POST["type"])){echo $_POST["type"];}else{echo "undefined";}?> />  <?php
+                echo $_POST["type"];?>  <br/>
                 <input type="submit" name="submit" value="Valider" />
               </form>
+            </div>
+            <div class="Consult">
+              <h2> Consulation des cartes </h2>
       <?php
                 include "connect.php";
                 echo "<table> <tr> <td>";
@@ -78,7 +75,7 @@ include "Header.php";
                 $requete="select distinct famille from Cartes;";
                 if($res = $connection->query($requete))
                     while ($card_family =  $res->fetch_assoc()) {
-                        echo "<option value=". $card_family['family'].">".$card_family['family']. "</option>";
+                        echo "<option value=". $card_family['famille'].">".$card_family['famille']. "</option>";
                     }
                 echo "</select></td>";
                 echo "<td> <select name='card_nature'>";
@@ -87,14 +84,27 @@ include "Header.php";
                     while ($card_nature =  $res->fetch_assoc()) {
                         echo "<option value=". $card_nature['nature'].">".$card_nature['nature']. "</option>";
                     }
-                echo "</select></td></tr>";
+                echo "</select></td>";
+                echo "<td> <input type='submit' name='submit' value='Rechercher'/></td></tr>";
                 $requete="select * from Cartes;";
                 if($res = $connection->query($requete))
                     while ($card =  $res->fetch_assoc()) {
-                        echo "<tr> <td>".$card['titre']."(".$card['id_carte'].") </td>";
-                        echo "<td>".$card['type']."</td>";
-                        echo "<td>".$card['famille']."</td>";
-                        echo "<td>".$card['nature']."</td> </tr>";
+                        echo "<tr> <td>";
+                        if(!empty($card["titre"]))
+                        echo $card['titre']."(".$card['id_carte'].")";
+                        echo "</td><td>";
+                        if(!empty($card["type_carte"]))
+                        echo $card['type_carte'];
+                        echo "</td><td>";
+                        if(!empty($card["famille"]))
+                        echo $card['famille'];
+                        echo "</td><td>";
+                        if(!empty($card["nature"]))
+                        echo $card['nature'];
+                        echo "</td>";
+                        echo "<td><a href='Carte.php'><input type='submit' name='submit' value='Voir'/></a>";
+                        echo "<a href='index.php'><i class='material-icons'>delete</i></a>";
+                        echo "</td> </tr>";
                     }
                 $connection->close();
                 // if($_POST('submit'))
