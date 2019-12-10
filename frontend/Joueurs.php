@@ -5,13 +5,13 @@ include "Header.php";
 ?>
 
 <div class="collection">
-  <a class="waves-effect waves-light btn" href="/player_counters.php"><i class="material-icons left">clear</i>Pire ennemis</a>
-  <a class="waves-effect waves-light btn" href="/player_wr.php"><i class="material-icons left">fingerprint</i>Winrates</a>
-  <a class="waves-effect waves-light btn" href="/player_losses.php"><i class="material-icons left">format_list_numbered</i>Nombre de défaites</a>
-  <a class="waves-effect waves-light btn" href="/player_no_games.php"><i class="material-icons left">clear</i>Joueurs sans parties</a>
-  <a class="waves-effect waves-light btn" href="/player_collection_value.php"><i class="material-icons left">format_list_numbered</i>Classement collections</a>
-  <a class="waves-effect waves-light btn" href="/players_with_most_rares.php"><i class="material-icons left">grade</i>Classement nombre rares</a>
-  <a class="waves-effect waves-light btn" href="/player_nb_victories_opponent.php"><i class="material-icons left">grade</i>Nombre de victoires contre chaque joueur</a>
+  <a class="waves-effect waves-light btn" href="/PlayerCounters.php"><i class="material-icons left">clear</i>Pire ennemis</a>
+  <a class="waves-effect waves-light btn" href="/PlayerWR.php"><i class="material-icons left">fingerprint</i>Winrates</a>
+  <a class="waves-effect waves-light btn" href="/PlayerLosses.php"><i class="material-icons left">format_list_numbered</i>Nombre de défaites</a>
+  <a class="waves-effect waves-light btn" href="/PlayerNoGames.php"><i class="material-icons left">clear</i>Joueurs sans parties</a>
+  <a class="waves-effect waves-light btn" href="/PlayerCollectionValue.php"><i class="material-icons left">format_list_numbered</i>Classement collections</a>
+  <a class="waves-effect waves-light btn" href="/PlayerWithMostRares.php"><i class="material-icons left">grade</i>Classement nombre rares</a>
+  <a class="waves-effect waves-light btn" href="/PlayerNbVictoriesOpponent.php"><i class="material-icons left">grade</i>Nombre de victoires contre chaque joueur</a>
 
 </div>
 
@@ -24,16 +24,36 @@ if(isset($_GET["id"])) {
   showJoueurs($connection);
 }
 
+function add_joueur($connection) {
+    echo "<form class='col s12' method='get'>";
+    echo "<p> Nom";
+    echo "<input type='text' class='validate' name='Nom'/></br>";
+    echo " Prenom";
+    echo "<input type='text' class='validate' name='Prenom'/></br>";
+    echo " Pseudo";
+    echo "<input type='text' class='validate' name='Pseudo'/></p></br>";
+    echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter un joueur</button>";
+    echo "</form>";
+    if(isset($_GET["Nom"]) && isset($_GET["Prenom"]) && isset($_GET["Pseudo"])){
+        echo "toto";
+        $requete="INSERT INTO Joueurs (nom,prenom,pseudo) VALUES (?,?,?);";
+        if($stmt = $connection->prepare($requete)){
+            $stmt->bind_param('sss',$_GET["Nom"],$_GET["Prenom"],$_GET["Pseudo"]);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+}
 
 /* Afficher tous les decks de la BD */
 function showJoueurs($connection) {
-
+    echo "<h1>Ajout d'un joueur</h1>";
+    add_joueur($connection);
+    echo "<h1>Liste des joueurs </h1>";
   $requete="SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(Exemplaires.id_exemplaire) as nbExemplaires
             FROM Joueurs
-            INNER JOIN Exemplaires ON Joueurs.id_joueur = Exemplaires.id_joueur
+            LEFT JOIN Exemplaires ON Joueurs.id_joueur = Exemplaires.id_joueur
             GROUP BY Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo;";
-
-  echo "<h1> Liste des joueurs </h1>";
 
   /* execute la requete */
   if($res = $connection->query($requete)) {
@@ -57,7 +77,7 @@ function showJoueurs($connection) {
             echo "<td>".$joueur["pseudo"]."</td>";
             echo "<td>".$joueur["nbExemplaires"]."</td>";
             echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
-                      <a href=\"/deleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
+                      <a href=\"/DeleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -103,7 +123,9 @@ function showJoueur($connection,$id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$id_carte."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$id_carte."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       echo "</tbody>";

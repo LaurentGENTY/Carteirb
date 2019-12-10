@@ -9,8 +9,31 @@ if(isset($_GET["id"])) {
   showEditions($connection);
 }
 
+function add_edition($connection) {
+    echo "<form class='col s12' method='get'>";
+    echo "<p> Titre";
+    echo "<input type='text' class='validate' name='Edition'/></br>";
+    echo "Nombre d'impression";
+    echo "<input type='number' class='validate' name='Impression'/></br>";
+    echo "Date";
+    echo "<input type='datetime-local' class='validate' name='Date'/>";
+    echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter une édition</button>";
+    echo "</form>";
+    if(isset($_GET["Edition"]) && isset($_GET["Impression"]) && isset($_GET["Date"])){
+        $requete="INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES (?,?,?);";
+        if($stmt = $connection->prepare($requete)){
+            $stmt->bind_param('sdd',$_GET["Edition"],$_GET["Impression"],$_GET["Date"]);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+}
+
 /* Afficher tous les decks de la BD */
 function showEditions($connection) {
+    echo "<h1>Ajout d'une édition</h1>";
+    add_edition($connection);
+    echo "<h1>Liste des éditions</h1>";
   $requete="SELECT Editions.nom_edition, Editions.nombre_de_tirage, Editions.date_impression, Editions.id_edition
             FROM Editions;";
 
@@ -33,7 +56,9 @@ function showEditions($connection) {
             echo "<td>".$edition["nom_edition"]."</td>";
             echo "<td>".$edition["nombre_de_tirage"]."</td>";
             echo "<td>".$edition["date_impression"]."</td>";
-            echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"] ."\">Cartes</a></td>";
+            echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"]  ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                      <a href=\"/DeleteEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">delete</i></a>
+                      <a href=\"/AddCardEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">add</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -51,7 +76,7 @@ function showCardsEdition($connection,$id) {
             WHERE Editions.id_edition = ?";
 
   echo "<h1> Cartes de l'édition ".$id."</h1>";
-  
+
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);
@@ -80,7 +105,9 @@ function showCardsEdition($connection,$id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$id_carte."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$id_carte."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       echo "</tbody>";

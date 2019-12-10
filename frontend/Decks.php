@@ -41,7 +41,6 @@ function showAll($connection) {
       echo "<th><i class=\"material-icons\">title</i>Nom du deck</th>";
       echo "<th><i class=\"material-icons\">person_add</i>Créateur</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
-      echo "<th><i class=\"material-icons\">delete</i>Supprimer</th>";
 
       echo "</tr>";
       echo "</thead>";
@@ -51,9 +50,10 @@ function showAll($connection) {
             echo "<tr>";
             echo "<td>".$deck["nom_deck"]."</td>";
             echo "<td>".$deck["id_joueur"]."</td>";
-            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\">Cartes</a></td>";
             if($deck["id_joueur"] == $_COOKIE["id_joueur"])
-                echo "<td><a href=\"/DeleteDeck.php?id=".$deck["id_deck"]."\"> <i class=\"material-icons\">delete</i></a></td>";
+            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                      <a href=\"/DeleteDeck.php?id=".$deck["id_deck"]."\"><i class=\"material-icons\">delete</i></a>
+                      <a href=\"/AddCardToDeck.php?id_deck=".$deck["id_deck"]."\"><i class=\"material-icons\">add</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -101,8 +101,9 @@ function showCardsDeck($connection,$id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
-
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$id_carte."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$id_carte."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       echo "</tbody>";

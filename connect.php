@@ -1,7 +1,7 @@
  <?php
-  $login = 'lgenty';
-  $db_pwd = 'sugute10';
-  $db_name = 'lgenty';
+  $login = 'educhemin001';
+  $db_pwd = '93deli83';
+  $db_name = 'educhemin001';
   /* Creation de l'objet qui gere la connexion: */
   $connection = new mysqli("localhost", $login, $db_pwd, $db_name);
   if($connection->connect_error){
