@@ -10,24 +10,27 @@ if(isset($_COOKIE["id_joueur"])) {
 
 /* si on vient de soummettre le formulaire */
 if(isset($_GET["nom"]) && isset($_GET["prenom"])) {
-  $req = "SELECT Joueurs.id_joueur FROM Joueurs WHERE nom = ? AND prenom = ?";
+  $nom_joueur = $_GET["nom"];
+  $prenom_joueur = $_GET["prenom"];
 
-  if ($stmt = mysqli_prepare($connection, $req)) {
+  $requete="SELECT Joueurs.id_joueur
+            FROM Joueurs
+            WHERE nom = ? AND prenom = ?";
 
-      /* Exécution de la requête */
-      mysqli_stmt_execute($stmt);
+  if ($stmt = $connection->prepare($requete)) {
 
-      /* Association des variables de résultat */
-      mysqli_stmt_bind_result($stmt, $i);
+      $stmt->bind_param('ss', $nom_joueur, $prenom_joueur);
+      $stmt->bind_result($id_j);
+      $stmt->execute();
 
-      /* Lecture des valeurs */
-      while (mysqli_stmt_fetch($stmt)) {
-        setcookie("id_joueur", $id, time()+3600);
+      while($stmt->fetch()) {
+        setcookie("id_joueur", $id_j, time()+3600);  /* expire dans 1 heure */
       }
 
-      /* Fermeture de la commande */
-      mysqli_stmt_close($stmt);
-  }
+      $stmt->close();
+      header('Location: /index.php');
+      exit();
+    }
 }
 ?>
 

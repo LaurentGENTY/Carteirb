@@ -5,13 +5,13 @@ include "connect.php";
 /* recherche d'une partie en particulier */
 if(isset($_GET["id"])) {
   $id_partie = $_GET["id"];
-  showDecksPartie($id_partie);
+  showDecksPartie($connection,$id_partie);
 } else {
-  showAllParties();
+  showAllParties($connection);
 }
 
 /* Afficher toutes les parties */
-function showAllParties() {
+function showAllParties($connection) {
   $requete="SELECT Joueurs.nom as NomJ1, Joueurs.prenom as PrenomJ1, Parties.adversaire as J2, Parties.resultat, Parties.id_partie
             FROM Tournois
             INNER JOIN Parties ON parties.id_tournoi = Tournois.id_tournoi
@@ -43,7 +43,7 @@ function showAllParties() {
         echo "<td>".$partie["J2"]."</td>";
         echo "<td>".$partie["resultat"]."</td>";
         echo "<td>".$partie["id_partie"]."</td>";
-        echo "<a href=\"/parties.php?id=". $partie["id_partie"] ."\">Decks de la partie</a>";
+        echo "<td><a href=\"/parties.php?id=". $partie["id_partie"] ."\">Decks de la partie</a></td>";
         echo "</tr>";
       }
       $connection->close();
@@ -54,15 +54,18 @@ function showAllParties() {
 
 
 /* Afficher tous els decks d'une partie donnée en GET */
-function showDecksPartie($id) {
+function showDecksPartie($connection,$id) {
   $requete="SELECT Decks.nom_deck, Decks.id_deck, Decks.id_joueur
             FROM Decks
             INNER JOIN Partie_utilise_deck ON Partie_utilise_deck.id_deck= Decks.id_deck
-            WHERE Partie_utilise_deck.id_partie = ?";
+            INNER JOIN Parties ON Partie_utilise_deck.id_partie = Parties.id_partie
+            WHERE Parties.id_partie = ?";
 
-  if ($stmt = mysqli_prepare($connection, $requete)) {
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_bind_result($stmt, $nom, $id_deck, $joueur);
+  if ($stmt = $connection->prepare($requete)) {
+
+      $stmt->bind_param('i', $id);
+      $stmt->bind_result($nom, $id_deck, $id_joueur);
+      $stmt->execute();
 
       echo "<h1>Decks de la partie ".$id."</h1>";
 
@@ -71,22 +74,23 @@ function showDecksPartie($id) {
 
       echo "<tr>";
       echo "<th><i class=\"material-icons\">mode_edit</i>Nom deck</th>";
-      echo "<th><i class=\"material-icons\">format_list_numbered</i>Id deck</th>";
+      echo "<th><i class=\"material-icons\">format_list_numbered</i>Voir Deck</th>";
       echo "<th><i class=\"material-icons\">person_add</i>Créateur</th>";
       echo "</tr>";
       echo "</thead>";
       echo "<tbody>";
 
-      while (mysqli_stmt_fetch($stmt)) {
+      while($stmt->fetch()) {
         echo "<tr>";
         echo "<td>".$nom."</td>";
-        echo "<td>".$id_deck."</td>";
-        echo "<td>".$joueur."</td>";
+        echo "<td><a href=\"/Decks.php?id=".$id_deck."\"/>Page deck</td>";
+        echo "<td><a href=\"/Joueurs.php?id=".$id_joueur."\"/>Page joueur</td>";
         echo "</tr>";
       }
-      mysqli_stmt_close($stmt);
+      $stmt->close();
       echo "</tbody>";
       echo "</table>";
-  }
+    }
 }
+
 ?>
