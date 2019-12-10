@@ -24,13 +24,14 @@ if(isset($_GET["nom"]) && isset($_GET["prenom"])) {
       $stmt->execute();
 
       while($stmt->fetch()) {
-        if(!is_null($id_j))
+        if(!is_null($id_j)) {
           setcookie("id_joueur", $id_j, time()+3600);  /* expire dans 1 heure */
           $stmt->close();
           header('Location: /index.php');
-      } else {
+        } else {
         $stmt->close();
         header('Location: /login.php');
+        }
       }
 
       exit();
