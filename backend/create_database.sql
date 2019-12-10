@@ -2,6 +2,8 @@ SET FOREIGN_KEY_CHECKS=0;
 
 -- Supprimer les tables si elles existent
 
+DROP VIEW Joueurs_Adversaires_Victoires;
+
 DROP TABLE IF EXISTS Carte_a_caracteristique;
 
 DROP TABLE IF EXISTS Partie_utilise_deck;
@@ -168,3 +170,15 @@ ALTER TABLE Carte_est_edition
  ADD CONSTRAINT FK_carte_edition_edition FOREIGN KEY (id_edition) REFERENCES Editions(id_edition) ON DELETE CASCADE,
    ADD CONSTRAINT FK_carte_edition_carte FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte) ON DELETE CASCADE,
    ADD CONSTRAINT CHK_cote CHECK(cote >= 1);
+
+CREATE VIEW Joueurs_Adversaires_Victoires AS
+(
+  SELECT CONCAT(J1.nom, ' ', J1.prenom) AS Joueur1, resultat, CONCAT(J2.nom, ' ', J2.prenom) AS Joueur2, COUNT(*) AS Victoires
+  FROM Joueurs J1
+  INNER JOIN Decks on J1.id_joueur = Decks.id_joueur
+  INNER JOIN Partie_utilise_deck on Decks.id_deck = Partie_utilise_deck.id_deck
+  INNER JOIN Parties ON Partie_utilise_deck.id_partie = Parties.id_partie
+  INNER JOIN Joueurs J2 ON Parties.adversaire = J2.id_joueur
+  WHERE resultat = 'VICTOIRE'
+  GROUP BY Joueur1, Joueur2
+);
