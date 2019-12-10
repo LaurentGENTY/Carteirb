@@ -33,7 +33,9 @@ function showEditions($connection) {
             echo "<td>".$edition["nom_edition"]."</td>";
             echo "<td>".$edition["nombre_de_tirage"]."</td>";
             echo "<td>".$edition["date_impression"]."</td>";
-            echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"] ."\">Cartes</a></td>";
+            echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"]  ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                      <a href=\"/DeleteEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">delete</i></a>
+                      <a href=\"/AddCardEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">add</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -51,7 +53,7 @@ function showCardsEdition($connection,$id) {
             WHERE Editions.id_edition = ?";
 
   echo "<h1> Cartes de l'édition ".$id."</h1>";
-  
+
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);
@@ -80,7 +82,9 @@ function showCardsEdition($connection,$id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$id_carte."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$id_carte."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       echo "</tbody>";

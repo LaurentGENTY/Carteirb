@@ -2,6 +2,8 @@
 include "connect.php";
 include "Header.php";
 
+echo "<h1> Taux de pick des cartes </h1>";
+
 $requete = "SELECT Utilisations.titre AS Carte, CONCAT(ROUND(Nb_utilisations * 100 / Nb_decks, 2), '%') AS PickRate
             FROM (
                 (
@@ -11,7 +13,7 @@ $requete = "SELECT Utilisations.titre AS Carte, CONCAT(ROUND(Nb_utilisations * 1
                 GROUP BY Cartes.id_carte
             ) Utilisations
             INNER JOIN (
-                SELECT id_deck, COUNT(*) AS Nb_decks 
+                SELECT id_deck, COUNT(*) AS Nb_decks
                 FROM Decks
             ) TotalDecks
             ON Utilisations.id_deck = TotalDecks.id_deck)

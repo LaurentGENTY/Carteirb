@@ -6,8 +6,8 @@ include "Header.php";
 
 <div class="collection">
   <a class="waves-effect waves-light btn" href="/Pickrate.php"><i class="material-icons left">show_chart</i>Pick Rate des cartes</a>
-  <a class="waves-effect waves-light btn" href="/Cards_no_deck.php"><i class="material-icons left">clear</i>Cartes dans aucun deck</a>
-  <a class="waves-effect waves-light btn" href="/cards_used_by_players.php"><i class="material-icons left">format_list_numbered</i>Nombre utilisations</a>
+  <a class="waves-effect waves-light btn" href="/CardsNoDeck.php"><i class="material-icons left">clear</i>Cartes dans aucun deck</a>
+  <a class="waves-effect waves-light btn" href="/CardsUsedByPlayers.php"><i class="material-icons left">format_list_numbered</i>Nombre utilisations</a>
 </div>
 
 <?php
@@ -18,7 +18,6 @@ if(isset($_GET["id"])) {
 } else {
   showCards($connection);
 }
-
 
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
@@ -51,7 +50,6 @@ function showCards($connection) {
       echo "<th><i class=\"material-icons\">whatshot</i>Nature</th>";
       echo "<th><i class=\"material-icons\">apps</i>Famille</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
-      echo "<th><i class=\"material-icons\">delete</i>Supprimer</th>";
 
       echo "</tr>";
       echo "</thead>";
@@ -64,8 +62,9 @@ function showCards($connection) {
         echo "<td>".$card["type_carte"]."</td>";
         echo "<td>".$card["nature"]."</td>";
         echo "<td>".$card["famille"]."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\">Voir Carte</a></td>";
-        echo "<td><a href=\"/deleteCard.php?id=".$card["id_carte"]."\"> <i class=\"material-icons\">delete</i></a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$card["id_carte"]."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$card["id_carte"]."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
 
@@ -81,7 +80,6 @@ function showCard($connection,$id) {
             FROM Cartes
             WHERE Cartes.id_carte = ?";
 
-  echo "<h1> Détail de la carte ".$id."</h1>";
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);
@@ -127,7 +125,7 @@ function showCard($connection,$id) {
         <div class="col s7">
       <?php
 
-      $requete_caracs="SELECT DISTINCT Caracteristiques.type_caracteristique, Caracteristiques.valeur_caracteristique
+      $requete_caracs="SELECT DISTINCT Caracteristiques.type_caracteristique, Caracteristiques.valeur_caracteristique, Caracteristiques.id_caracteristique
                     FROM Cartes
                     INNER JOIN Carte_a_caracteristique ON Cartes.id_carte = Carte_a_caracteristique.id_carte
                     INNER JOIN Caracteristiques ON Carte_a_caracteristique.id_caracteristique = Caracteristiques.id_caracteristique
@@ -137,7 +135,7 @@ function showCard($connection,$id) {
       if ($stmt = $connection->prepare($requete_caracs)) {
 
           $stmt->bind_param('i', $card);
-          $stmt->bind_result($type, $valeur);
+          $stmt->bind_result($type, $valeur, $id_carac);
           $stmt->execute();
 
           echo "<table>";
@@ -146,6 +144,7 @@ function showCard($connection,$id) {
           echo "<tr>";
           echo "<th><i class=\"material-icons\">merge_type</i>Type Caracteristique</th>";
           echo "<th><i class=\"material-icons\">format_list_numbered</i>Valeur Caracteristique</th>";
+          echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
           echo "</tr>";
           echo "</thead>";
           echo "<tbody>";
@@ -154,14 +153,16 @@ function showCard($connection,$id) {
             echo "<tr>";
             echo "<td>".$type."</td>";
             echo "<td>".$valeur."</td>";
+            echo "<td><a href=\"/DeleteCaracteristique.php?id_carac=".$id_carac."\"><i class=\"material-icons\">delete</i></a>";
             echo "</tr>";
           }
+
           echo "</tbody>";
           echo "</table>";
           echo "</div>";
+          echo "</div>";
+          $stmt->close();
       }
-      echo "</div>";
-      $stmt->close();
   }
 }
 

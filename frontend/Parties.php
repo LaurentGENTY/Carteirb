@@ -43,7 +43,7 @@ function showAllParties($connection) {
         echo "<td>".$partie["J2"]."</td>";
         echo "<td>".$partie["resultat"]."</td>";
         echo "<td>".$partie["id_partie"]."</td>";
-        echo "<td><a href=\"/parties.php?id=". $partie["id_partie"] ."\">Decks de la partie</a></td>";
+        echo "<td><a href=\"/Parties.php?id=". $partie["id_partie"] ."\">Decks de la partie</a></td>";
         echo "</tr>";
       }
       $connection->close();
@@ -74,7 +74,7 @@ function showDecksPartie($connection,$id) {
 
       echo "<tr>";
       echo "<th><i class=\"material-icons\">mode_edit</i>Nom deck</th>";
-      echo "<th><i class=\"material-icons\">format_list_numbered</i>Voir Deck</th>";
+      echo "<th><i class=\"material-icons\">format_list_numbered</i>Deck</th>";
       echo "<th><i class=\"material-icons\">person_add</i>Créateur</th>";
       echo "</tr>";
       echo "</thead>";
@@ -83,8 +83,10 @@ function showDecksPartie($connection,$id) {
       while($stmt->fetch()) {
         echo "<tr>";
         echo "<td>".$nom."</td>";
-        echo "<td><a href=\"/Decks.php?id=".$id_deck."\"/>Page deck</td>";
-        echo "<td><a href=\"/Joueurs.php?id=".$id_joueur."\"/>Page joueur</td>";
+        echo "<td><a href=\"/Decks.php?id=".$id_deck."\"/><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteDeck.php?id=".$id_deck."\"><i class=\"material-icons\">clear</i></a></td>";
+        echo "<td><a href=\"/Joueurs.php?id=".$id_joueur."\"/><i class=\"material-icons\">person</i><a/>
+                  <a href=\"/DeleteJoueur.php?id=".$id_joueur."\"><i class=\"material-icons\">clear</i></a></td>";
         echo "</tr>";
       }
       $stmt->close();

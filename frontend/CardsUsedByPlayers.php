@@ -35,7 +35,9 @@ function showNbUses($connection) {
         echo "<td>".$card["titre"]."</td>";
         echo "<td>".$card["id_carte"]."</td>";
         echo "<td>".$card["nbJoueurs"]."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$card["id_carte"]."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$card["id_carte"]."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       $connection->close();

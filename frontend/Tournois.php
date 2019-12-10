@@ -35,7 +35,9 @@ function showAllTournois($connection) {
             echo "<td>".$tournoi["lieu"]."</td>";
             echo "<td>".$tournoi["date_tournoi"]."</td>";
             echo "<td>".$tournoi["id_tournoi"]."</td>";
-            echo "<td><a href=\"/Tournois.php?id=". $tournoi["id_tournoi"] ."\">Parties</a></td>";
+            echo "<td><a href=\"/Tournois.php?id=". $tournoi["id_tournoi"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                      <a href=\"/DeleteTournoi.php?id=".$tournoi["id_tournoi"]."\"><i class=\"material-icons\">delete</i></a>
+                      <a href=\"/AddPartiesToTournoi.php?id=".$tournoi["id_tournoi"]."\"><i class=\"material-icons\">add</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -83,7 +85,9 @@ function showPartiesTournoi($connection,$id) {
         echo "<td>".$adv."</td>";
         echo "<td>".$resultat."</td>";
         echo "<td>".$id_partie."</td>";
-        echo "<td><a href=\"/Parties.php?id=". $id_partie ."\">Decks de la partie</a></td>";
+        echo "<td><a href=\"/Parties.php?id=". $id_partie ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteParties.php?id=".$id_partie."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddParties.php?id=".$id_partie."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       $stmt->close();
