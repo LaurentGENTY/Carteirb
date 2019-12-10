@@ -21,11 +21,7 @@ function showCards($connection) {
   //echo "<h1>Liste des cartes</h1>";
 
   if ($res = $connection->query($requete)) {
-    echo "<script>";
-    echo "$(document).ready(function() {";
-    echo "$('select').material_select();";
-    echo "});";
-    echo "</script>";
+
 
     echo "<h1> Ajouter une carte </h1>";
     echo "<p>";
@@ -33,7 +29,7 @@ function showCards($connection) {
       //echo "  <form action='#' method='post'>";
       echo "<div class='input-field col s12'>";
       echo "     <select name='type'>";
-      echo "          <option selected='default'> </option>";
+      echo "          <option disabled selected> </option>";
       echo "          <option value='Monstre'> Monstre </option>";
       echo "          <option value='Magie'> Magie </option>";
       echo "          <option value='Piège'> Piège </option>";
@@ -41,7 +37,22 @@ function showCards($connection) {
       echo "      </select> <label> Type </label> <br/>";
       echo "</div>";
 
+      echo "<div class='input-field col s12'>";
+      echo "<select>";
+      echo "<option value='' disabled selected>Choose your option</option>";
+      echo "<option value='1'>Option 1</option>";
+      echo "<option value='2'>Option 2</option>";
+      echo "<option value='3'>Option 3</option>";
+      echo "</select>";
+      echo "<label>Materialize Select</label>";
+      echo "</div>";
 
+      echo "<script>";
+      echo "$(document).ready(function() {";
+      echo "$('select').material_select();";
+      echo "});";
+      echo "var instance = M.FormSelect.getInstance(elem);";
+      echo "</script>";
   //  echo "      <input type='submit' name='submit' value='Valider le type' />";
       //echo "  </form>";
 
