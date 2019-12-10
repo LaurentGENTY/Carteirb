@@ -2,13 +2,18 @@
 include "Header.php";
 ?>
 
-<p> Nous sommes le groupe La Quintessence. </br>
-    Nous sommes des étudiants de l'ENSEIRB-MATMECA de 2ème Année en filière Informatique. </br> Nous faisons partie du groupe 3.
-    Notre groupe se compose de :
-    <ul>
-        <li> Laurent GENTY </li>
-        <li> Emeric DUCHEMIN </li>
-        <li> Johan CHATAIGNER </li>
-        <li> Dylan HERTAY </li>
+<blockquote>
+      Projet réalisé par le groupe La Quintessence, étudiants de l'Enseirb-Matmeca en 2ème Année en filière Informatique.
+</blockquote>
+
+    <ul class="collection">
+      <li class="collection-item">Laurent GENTY</li>
+      <li class="collection-item">Johan CHATAIGNER</li>
+      <li class="collection-item">Emeric DUCHEMIN</li>
+      <li class="collection-item">Dylan HERTAY</li>
     </ul>
+
 </p>
+<?php
+include "Footer.php";
+?>

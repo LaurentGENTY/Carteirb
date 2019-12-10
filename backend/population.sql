@@ -9,61 +9,61 @@ INSERT INTO Joueurs(nom,prenom,pseudo) VALUES ('Pegasus','Crawford',NULL);
 -- Cartes
 
 -- yugi
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Magicien des t&#233n&#232bres','Monstre','T&#233n&#232bres','Magicien');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Cr&#226ne invoqu&#233','Monstre','T&#233n&#232bres','D&#233mon');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ga&#239a Chevalier Implacable','Monstre','Terre','Guerrier');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Mal&#233diction du dragon','Monstre','T&#233n&#232bres','Dragon');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Insecte mangeur d hommes','Monstre','Terre','Insecte');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Magicien des t&#233n&#232bres','Monstre','T&#233n&#232bres','Magicien',,'https://www.otk-expert.fr/cartes/yugioh/46986414.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Cr&#226ne invoqu&#233','Monstre','T&#233n&#232bres','D&#233mon',,'https://www.otk-expert.fr/cartes/yugioh/70781052.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ga&#239a Chevalier Implacable','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/6368038.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Mal&#233diction du dragon','Monstre','T&#233n&#232bres','Dragon','https://www.otk-expert.fr/cartes/yugioh/28279543.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Insecte mangeur d hommes','Monstre','Terre','Insecte','https://www.otk-expert.fr/cartes/yugioh/54652250.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Trou noir','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Monster Reborn','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Changement de coeur','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Fissure','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Yami','Magie',NULL,'Terrain');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Trou noir','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/53129443.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Monster Reborn','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/83764718.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Changement de coeur','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/4031928.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Fissure','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/66788016.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Yami','Magie',NULL,'Terrain','https://www.otk-expert.fr/cartes/yugioh/59197169.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Trappe','Pi&#232ge',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Waboku','Pi&#232ge',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Jarre de capture du dragon','Pi&#232ge',NULL,'Continue');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Pi&#232ge inverse','Pi&#232ge',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Offrande ultime','Pi&#232ge',NULL,'Continue');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Trappe','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/4206964.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Waboku','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/12607053.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Jarre de capture du dragon','Pi&#232ge',NULL,'Continue','https://www.otk-expert.fr/cartes/yugioh/50045299.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Pi&#232ge inverse','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/77622396.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Offrande ultime','Pi&#232ge',NULL,'Continue','https://www.otk-expert.fr/cartes/yugioh/80604091.jpg');
 
 -- kaiba
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon blanc aux yeux bleus','Monstre','Lumi&#232re','Dragon');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Juge','Monstre','Terre','Guerrier');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Seigneur des D','Monstre','T&#233n&#232bres','Magicien');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Hane-Hane','Monstre','Terre','B&#234te');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ma&#238tre des pi&#232ges','Monstre','Terre','Guerrier');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon blanc aux yeux bleus','Monstre','Lumi&#232re','Dragon','https://www.otk-expert.fr/cartes/yugioh/89631139.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Juge','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/17985575.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Seigneur des D','Monstre','T&#233n&#232bres','Magicien','https://www.otk-expert.fr/cartes/yugioh/7089711.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Hane-Hane','Monstre','Terre','B&#234te','https://www.otk-expert.fr/cartes/yugioh/30113682.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ma&#238tre des pi&#232ges','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/46461247.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Fl&#251te d invocation du dragon','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ookazi','Magie',NULL,'Normale');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Fl&#251te d invocation du dragon','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/43973174.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Ookazi','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/19523799.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Desserts seuls','Pi&#232ge',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Renforts','Pi&#232ge',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Enceinte du ch&#226teau','Pi&#232ge',NULL,'Normale');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Desserts seuls','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/24068492.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Renforts','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/17814387.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Enceinte du ch&#226teau','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/44209392.jpg');
 
 -- joey
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon Noir aux yeux rouges','Monstre','T&#233n&#232bres','Dragon');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Le spadassin de Landstar','Monstre','Terre','Guerrier');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon Mill&#233naire','Fusion','Vent','Dragon');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Magicien du temps','Monstre','Lumi&#232re','Magicien');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Soldat pingouin','Monstre','Eau','Aqua');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon Noir aux yeux rouges','Monstre','T&#233n&#232bres','Dragon','https://www.otk-expert.fr/cartes/yugioh/74677422.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Le spadassin de Landstar','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/3573512.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Dragon Mill&#233naire','Fusion','Vent','Dragon','https://www.otk-expert.fr/cartes/yugioh/41462083.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Magicien du temps','Monstre','Lumi&#232re','Magicien','https://www.otk-expert.fr/cartes/yugioh/71625222.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Soldat pingouin','Monstre','Eau','Aqua','https://www.otk-expert.fr/cartes/yugioh/93920745.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Bouc &#233missaire','Magie',NULL,'Rapide');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Nuzzler Mal&#233fique','Magie',NULL,'&#233quipement');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Bouc &#233missaire','Magie',NULL,'Rapide','https://www.otk-expert.fr/cartes/yugioh/73915051.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Nuzzler Mal&#233fique','Magie',NULL,'&#233quipement','https://www.otk-expert.fr/cartes/yugioh/99597615.jpg');
 
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Sept outils du bandit','Pi&#232ge',NULL,'Contre');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Sept outils du bandit','Pi&#232ge',NULL,'Contre','https://www.otk-expert.fr/cartes/yugioh/3819470.jpg');
 
 -- cartes aucun deck
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Jinzo','Monstre','T&#233n&#232bres','Machine');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Buster Blader','Monstre','Terre','Guerrier');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Le Renonc&#233 aux milles yeux','Fusion','T&#233n&#232bres','Magicien');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Morphojarre n&#176 2','Monstre','Terre','Rocher');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('D&#233mon Megacyber','Monstre','T&#233n&#232bres','Guerrier');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Seigneur de la suppresion','Magie',NULL,'Normale');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Limiter Removal','Magie',NULL,'Rapide');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Enterrement pr&#233matur&#233','Magie',NULL,'&#233quipement');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Appel &#224 l &#234tre hant&#233','Pi&#232ge',NULL,'Continue');
-INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Tornade de poussi&#232re','Pi&#232ge',NULL,'Normale');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Jinzo','Monstre','T&#233n&#232bres','Machine','https://www.otk-expert.fr/cartes/yugioh/77585513.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Buster Blader','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/78193831.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Le Renonc&#233 aux milles yeux','Fusion','T&#233n&#232bres','Magicien','https://www.otk-expert.fr/cartes/yugioh/63519819.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Morphojarre n&#176 2','Monstre','Terre','Rocher','https://www.otk-expert.fr/cartes/yugioh/79106360.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('D&#233mon Megacyber','Monstre','T&#233n&#232bres','Guerrier','https://www.otk-expert.fr/cartes/yugioh/66362965.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Seigneur de la suppresion','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/71044499.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Limiter Removal','Magie',NULL,'Rapide','https://www.otk-expert.fr/cartes/yugioh/23171610.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Enterrement pr&#233matur&#233','Magie',NULL,'&#233quipement','https://www.otk-expert.fr/cartes/yugioh/70828912.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Appel &#224 l &#234tre hant&#233','Pi&#232ge',NULL,'Continue','https://www.otk-expert.fr/cartes/yugioh/97077563.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille) VALUES ('Tornade de poussi&#232re','Pi&#232ge',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/60082869.jpg');
 
 -- caracteristiques des cartes
 

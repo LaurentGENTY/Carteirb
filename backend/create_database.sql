@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS Cartes
    titre   		                NVARCHAR(50)		not null,
    type_carte		              ENUM('Monstre','Magie','Piège','XYZ','Fusion') not null,
    nature			                NVARCHAR(50),
-   famille    			            NVARCHAR(50) 	    not null
+   famille    			            NVARCHAR(50) 	    not null,
+   image                      NVARCHAR(512)
 ) ENGINE = INNODB;
 
 CREATE TABLE IF NOT EXISTS Caracteristiques
