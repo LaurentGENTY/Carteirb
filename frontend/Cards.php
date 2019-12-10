@@ -12,22 +12,15 @@ if(isset($_GET["id"])) {
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
-            FROM Cartes
-            INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
-            INNER JOIN Decks ON Decks.id_deck = Deck_contient_carte.id_deck;";
+            FROM Cartes;";
 
-  echo "<h1>Liste des cartes</h1>";
+  //echo "<h1>Liste des cartes</h1>";
 
   if ($res = $connection->query($requete)) {
     echo "<script>";
     echo "$(document).ready(function() {";
     echo "$('select').material_select();";
     echo "});";
-    echo "document.addEventListener('DOMContentLoaded', function() {";
-    echo "var elems = document.querySelectorAll('select');";
-    echo "var instances = M.FormSelect.init(elems, options);";
-    echo "});";
-    echo "var instance = M.FormSelect.getInstance(elem);";
     echo "</script>";
 
     echo "<h1> Ajouter une carte </h1>";
@@ -98,7 +91,7 @@ function showCards($connection) {
         echo "<td>".$card["nature"]."</td>";
         echo "<td>".$card["famille"]."</td>";
         echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\">Voir Carte</a></td>";
-        echo "<td><i class=\"material-icons\" href='delete.php'>delete</i></td>";
+        echo "<td><a href=\"/deleteCard.php?id=".$card["id_carte"]."\"> <i class=\"material-icons\">delete</i></a></td>";
         echo "</tr>";
       }
 
