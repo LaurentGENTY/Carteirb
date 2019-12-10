@@ -38,7 +38,7 @@ function showJoueursNoGames($connection) {
         echo "<td>".$joueur["prenom"]."</td>";
         echo "<td>".$joueur["pseudo"]."</td>";
         echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
-                  <a href=\"/deleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
+                  <a href=\"/DeleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
         echo "</tr>";
       }
       $connection->close();

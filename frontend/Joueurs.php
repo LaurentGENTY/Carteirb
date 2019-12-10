@@ -5,13 +5,13 @@ include "Header.php";
 ?>
 
 <div class="collection">
-  <a class="waves-effect waves-light btn" href="/player_counters.php"><i class="material-icons left">clear</i>Pire ennemis</a>
-  <a class="waves-effect waves-light btn" href="/player_wr.php"><i class="material-icons left">fingerprint</i>Winrates</a>
-  <a class="waves-effect waves-light btn" href="/player_losses.php"><i class="material-icons left">format_list_numbered</i>Nombre de défaites</a>
-  <a class="waves-effect waves-light btn" href="/player_no_games.php"><i class="material-icons left">clear</i>Joueurs sans parties</a>
-  <a class="waves-effect waves-light btn" href="/player_collection_value.php"><i class="material-icons left">format_list_numbered</i>Classement collections</a>
-  <a class="waves-effect waves-light btn" href="/players_with_most_rares.php"><i class="material-icons left">grade</i>Classement nombre rares</a>
-  <a class="waves-effect waves-light btn" href="/player_nb_victories_opponent.php"><i class="material-icons left">grade</i>Nombre de victoires contre chaque joueur</a>
+  <a class="waves-effect waves-light btn" href="/PlayerCounters.php"><i class="material-icons left">clear</i>Pire ennemis</a>
+  <a class="waves-effect waves-light btn" href="/PlayerWR.php"><i class="material-icons left">fingerprint</i>Winrates</a>
+  <a class="waves-effect waves-light btn" href="/PlayerLosses.php"><i class="material-icons left">format_list_numbered</i>Nombre de défaites</a>
+  <a class="waves-effect waves-light btn" href="/PlayerNoGames.php"><i class="material-icons left">clear</i>Joueurs sans parties</a>
+  <a class="waves-effect waves-light btn" href="/PlayerCollectionValue.php"><i class="material-icons left">format_list_numbered</i>Classement collections</a>
+  <a class="waves-effect waves-light btn" href="/PlayerWithMostRares.php"><i class="material-icons left">grade</i>Classement nombre rares</a>
+  <a class="waves-effect waves-light btn" href="/PlayerNbVictoriesOpponent.php"><i class="material-icons left">grade</i>Nombre de victoires contre chaque joueur</a>
 
 </div>
 
@@ -57,7 +57,7 @@ function showJoueurs($connection) {
             echo "<td>".$joueur["pseudo"]."</td>";
             echo "<td>".$joueur["nbExemplaires"]."</td>";
             echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
-                      <a href=\"/deleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
+                      <a href=\"/DeleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -103,7 +103,9 @@ function showJoueur($connection,$id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                  <a href=\"/DeleteCard.php?id=".$id_carte."\"><i class=\"material-icons\">delete</i></a>
+                  <a href=\"/AddCardToDeck.php?id=".$id_carte."\"><i class=\"material-icons\">add</i></a></td>";
         echo "</tr>";
       }
       echo "</tbody>";
