@@ -1,16 +1,16 @@
 <?php
-include "Header.php";
 include "connect.php";
+include "Header.php";
 
 if(isset($_GET["id"])) {
   $id_deck = $_GET["id"];
-  showCardsDeck($id_deck);
+  showCardsDeck($connection,$id_deck);
 } else {
-  showAll();
+  showAll($connection);
 }
 
 /* Afficher tous les decks de la BD */
-function showAll() {
+function showAll($connection) {
   $requete="SELECT Decks.nom_deck, Decks.id_joueur, Decks.id_deck
             FROM Decks;";
 
@@ -31,7 +31,7 @@ function showAll() {
             echo "<tr>";
             echo "<td>".$deck["nom_deck"]."</td>";
             echo "<td>".$deck["id_joueur"]."</td>";
-            echo "<a href=\"/Deck.php?id=". $deck["id_deck"] ."\">Parties</a>";
+            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\">Cartes</a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -41,7 +41,7 @@ function showAll() {
 }
 
 /* Afficher toutes les parties d'un tournois donné en GET */
-function showCardsDeck($id) {
+function showCardsDeck($connection,$id) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes
             INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
@@ -76,9 +76,11 @@ function showCardsDeck($id) {
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
         echo "<td>".$famille."</td>";
-        echo "<a href=\"/cards.php?id=". $id_carte ."\">Voir Carte</a>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\">Voir Carte</a></td>";
         echo "</tr>";
       }
+      echo "</tbody>";
+      echo "</table>";
       $stmt->close();
   }
 }
