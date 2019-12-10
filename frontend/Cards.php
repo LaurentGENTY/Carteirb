@@ -2,8 +2,15 @@
 include "connect.php";
 include "Header.php";
 
-echo "<div width=\"50%\"><a class=\"waves-effect waves-light btn\" href=\"/Pickrate.php\"><i class=\"material-icons left\">show_chart</i>Pick Rate des cartes</a></div>";
+?>
 
+<div class="collection">
+  <a class="waves-effect waves-light btn" href="/Pickrate.php"><i class="material-icons left">show_chart</i>Pick Rate des cartes</a>
+  <a class="waves-effect waves-light btn" href="/Cards_no_deck.php"><i class="material-icons left">clear</i>Cartes dans aucun deck</a>
+  <a class="waves-effect waves-light btn" href="/cards_used_by_players.php"><i class="material-icons left">format_list_numbered</i>Nombre utilisations</a>
+</div>
+
+<?php
 
 if(isset($_GET["id"])) {
   $id_card = $_GET["id"];

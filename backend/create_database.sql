@@ -2,7 +2,7 @@ SET FOREIGN_KEY_CHECKS=0;
 
 -- Supprimer les tables si elles existent
 
-DROP VIEW Joueurs_Adversaires_Victoires;
+DROP VIEW IF EXISTS Joueurs_Adversaires_Victoires;
 
 DROP TABLE IF EXISTS Carte_a_caracteristique;
 

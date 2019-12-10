@@ -2,6 +2,21 @@
 include "connect.php";
 include "Header.php";
 
+?>
+
+<div class="collection">
+  <a class="waves-effect waves-light btn" href="/player_counters.php"><i class="material-icons left">clear</i>Pire ennemis</a>
+  <a class="waves-effect waves-light btn" href="/player_wr.php"><i class="material-icons left">fingerprint</i>Winrates</a>
+  <a class="waves-effect waves-light btn" href="/player_losses.php"><i class="material-icons left">format_list_numbered</i>Nombre de défaites</a>
+  <a class="waves-effect waves-light btn" href="/player_no_games.php"><i class="material-icons left">clear</i>Joueurs sans parties</a>
+  <a class="waves-effect waves-light btn" href="/player_collection_value.php"><i class="material-icons left">format_list_numbered</i>Classement collections</a>
+  <a class="waves-effect waves-light btn" href="/players_with_most_rares.php"><i class="material-icons left">grade</i>Classement nombre rares</a>
+  <a class="waves-effect waves-light btn" href="/player_nb_victories_opponent.php"><i class="material-icons left">grade</i>Nombre de victoires contre chaque joueur</a>
+
+</div>
+
+<?php
+
 if(isset($_GET["id"])) {
   $id_joueur = $_GET["id"];
   showJoueur($connection,$id_joueur);
@@ -9,11 +24,14 @@ if(isset($_GET["id"])) {
   showJoueurs($connection);
 }
 
+
 /* Afficher tous les decks de la BD */
 function showJoueurs($connection) {
 
-  $requete="SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo
-            FROM Joueurs;";
+  $requete="SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(Exemplaires.id_exemplaire) as nbExemplaires
+            FROM Joueurs
+            INNER JOIN Exemplaires ON Joueurs.id_joueur = Exemplaires.id_joueur
+            GROUP BY Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo;";
 
   echo "<h1> Liste des joueurs </h1>";
 
@@ -25,7 +43,7 @@ function showJoueurs($connection) {
       echo "<th><i class=\"material-icons\">person</i>Nom joueur</th>";
       echo "<th><i class=\"material-icons\">person_outline</i>Prenom</th>";
       echo "<th><i class=\"material-icons\">title</i>Pseudo</th>";
-      echo "<th><i class=\"material-icons\">title</i>Parties</th>";
+      echo "<th><i class=\"material-icons\">format_list_numbered</i>Nombre de cartes</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
 
       echo "</tr>";
@@ -37,6 +55,7 @@ function showJoueurs($connection) {
             echo "<td>".$joueur["nom"]."</td>";
             echo "<td>".$joueur["prenom"]."</td>";
             echo "<td>".$joueur["pseudo"]."</td>";
+            echo "<td>".$joueur["nbExemplaires"]."</td>";
             echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
                       <a href=\"/deleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
             echo "</tr>";
@@ -92,5 +111,6 @@ function showJoueur($connection,$id) {
       $stmt->close();
   }
 }
+include "Footer.php";
 
 ?>

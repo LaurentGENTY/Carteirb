@@ -9,9 +9,19 @@
                 <h5 class="white-text">Navigation</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="/index.php">Accueil</a></li>
+                  <?php if (isset($_COOKIE["id_joueur"])) {
+                    echo "<li><a class=\"grey-text text-lighten-3\" href=\"logout.php\">Se déconnecter</a></li>";
+                    echo "<li><a class=\"grey-text text-lighten-3\" href=\"Joueurs.php?id=".$_COOKIE["id_joueur"]."\">Mon profil</a></li>";
+                  } else {
+                    echo "<li><a class=\"grey-text text-lighten-3\" href=\"login.php\">Se connecter</a></li>";
+                  } ?>
+                  <li><a class="grey-text text-lighten-3" href="/Joueurs.php">Joueurs</a></li>
                   <li><a class="grey-text text-lighten-3" href="/Cards.php">Cartes</a></li>
                   <li><a class="grey-text text-lighten-3" href="/Decks.php">Decks</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/Editions.php">Editions</a></li>
                   <li><a class="grey-text text-lighten-3" href="/Tournois.php">Tournois</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/Contact.php">À propos de nous</a></li>
+
                 </ul>
               </div>
             </div>
