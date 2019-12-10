@@ -2,12 +2,16 @@
 include "connect.php";
 include "Header.php";
 
+echo "<div width=\"50%\"><a class=\"waves-effect waves-light btn\" href=\"/Pickrate.php\"><i class=\"material-icons left\">show_chart</i>Pick Rate des cartes</a></div>";
+
+
 if(isset($_GET["id"])) {
   $id_card = $_GET["id"];
   showCard($connection,$id_card);
 } else {
   showCards($connection);
 }
+
 
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
@@ -50,7 +54,7 @@ function showCards($connection) {
   }
 }
 
-/* Afficher toutes les parties d'un tournois donné en GET */
+/* Afficher toutes les cartes données en GET */
 function showCard($connection,$id) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille, Cartes.image
             FROM Cartes
