@@ -3,11 +3,12 @@
 include "connect.php";
 
 // Required field names
-$required = array('title', 'nature', 'family');
+$required = array('title', 'nature', 'family', 'Type');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
 
+echo $_POST['Type'];
 
 foreach($required as $field) {
   if (empty($_POST[$field])) {
@@ -23,9 +24,8 @@ if ($error) {
 
 
 if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille) VALUES (?, ?, ?, ?);")) {
-    echo $type;
     //$type = "Monstre";
-    $stmt->bind_param('ssss', $_POST['title'],$type,$_POST['nature'],$_POST['family']);
+    $stmt->bind_param('ssss', $_POST['title'],$_POST['Type'],$_POST['nature'],$_POST['family']);
     // $stmt->bindParam(1, $_POST['title']);
     // $stmt->bind_param(2, "Monstre");
     // $stmt->bind_param(3, $_POST['nature']);
