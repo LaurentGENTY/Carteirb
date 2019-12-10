@@ -171,6 +171,9 @@ ALTER TABLE Carte_est_edition
    ADD CONSTRAINT FK_carte_edition_carte FOREIGN KEY (id_carte) REFERENCES Cartes(id_carte) ON DELETE CASCADE,
    ADD CONSTRAINT CHK_cote CHECK(cote >= 1);
 
+ALTER TABLE Cartes
+  ADD CONSTRAINT UC_titre UNIQUE (titre);
+
 CREATE VIEW Joueurs_Adversaires_Victoires AS
 (
   SELECT CONCAT(J1.nom, ' ', J1.prenom) AS Joueur1, resultat, CONCAT(J2.nom, ' ', J2.prenom) AS Joueur2, COUNT(*) AS Victoires
