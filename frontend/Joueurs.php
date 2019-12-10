@@ -3,35 +3,42 @@ include "connect.php";
 include "Header.php";
 
 if(isset($_GET["id"])) {
-  $id_deck = $_GET["id"];
-  showCardsDeck($connection,$id_deck);
+  $id_joueur = $_GET["id"];
+  showJoueur($connection,$id_joueur);
 } else {
-  showAll($connection);
+  showJoueurs($connection);
 }
 
 /* Afficher tous les decks de la BD */
-function showAll($connection) {
-  $requete="SELECT Decks.nom_deck, Decks.id_joueur, Decks.id_deck
-            FROM Decks;";
+function showJoueurs($connection) {
+
+  $requete="SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo
+            FROM Joueurs;";
+
+  echo "<h1> Liste des joueurs </h1>";
 
   /* execute la requete */
   if($res = $connection->query($requete)) {
       echo "<table>";
       echo "<thead>";
       echo "<tr>";
-      echo "<th><i class=\"material-icons\">title</i>Nom du deck</th>";
-      echo "<th><i class=\"material-icons\">person_add</i>Créateur</th>";
+      echo "<th><i class=\"material-icons\">person</i>Nom joueur</th>";
+      echo "<th><i class=\"material-icons\">person_outline</i>Prenom</th>";
+      echo "<th><i class=\"material-icons\">title</i>Pseudo</th>";
+      echo "<th><i class=\"material-icons\">title</i>Parties</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
 
       echo "</tr>";
       echo "</thead>";
       echo "<tbody>";
 
-      while ($deck = $res->fetch_assoc()) {
+      while ($joueur = $res->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>".$deck["nom_deck"]."</td>";
-            echo "<td>".$deck["id_joueur"]."</td>";
-            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\">Cartes</a></td>";
+            echo "<td>".$joueur["nom"]."</td>";
+            echo "<td>".$joueur["prenom"]."</td>";
+            echo "<td>".$joueur["pseudo"]."</td>";
+            echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
+                      <a href=\"/deleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -40,15 +47,14 @@ function showAll($connection) {
   }
 }
 
-/* Afficher toutes les parties d'un tournois donné en GET */
-function showCardsDeck($connection,$id) {
+/* Afficher les cartes d'un joueur */
+function showJoueur($connection,$id) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes
-            INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
-            INNER JOIN Decks ON Decks.id_deck = Deck_contient_carte.id_deck
-            WHERE Decks.id_deck = ?";
+            INNER JOIN Exemplaires ON Cartes.id_carte = Exemplaires.id_carte
+            WHERE Exemplaires.id_joueur = ?";
 
-  echo "<h1> Cartes du deck ".$id."</h1>";
+  echo "<h1> Cartes du joueurs ".$id."</h1>";
 
   if ($stmt = $connection->prepare($requete)) {
 

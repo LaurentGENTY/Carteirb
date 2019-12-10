@@ -3,35 +3,37 @@ include "connect.php";
 include "Header.php";
 
 if(isset($_GET["id"])) {
-  $id_deck = $_GET["id"];
-  showCardsDeck($connection,$id_deck);
+  $id_edition = $_GET["id"];
+  showCardsEdition($connection,$id_edition);
 } else {
-  showAll($connection);
+  showEditions($connection);
 }
 
 /* Afficher tous les decks de la BD */
-function showAll($connection) {
-  $requete="SELECT Decks.nom_deck, Decks.id_joueur, Decks.id_deck
-            FROM Decks;";
+function showEditions($connection) {
+  $requete="SELECT Editions.nom_edition, Editions.nombre_de_tirage, Editions.date_impression, Editions.id_edition
+            FROM Editions;";
 
   /* execute la requete */
   if($res = $connection->query($requete)) {
       echo "<table>";
       echo "<thead>";
       echo "<tr>";
-      echo "<th><i class=\"material-icons\">title</i>Nom du deck</th>";
-      echo "<th><i class=\"material-icons\">person_add</i>Créateur</th>";
+      echo "<th><i class=\"material-icons\">title</i>Nom edition</th>";
+      echo "<th><i class=\"material-icons\">format_list_numbered</i>Nombre de tirage</th>";
+      echo "<th><i class=\"material-icons\">date_range</i>Date d'impression</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
 
       echo "</tr>";
       echo "</thead>";
       echo "<tbody>";
 
-      while ($deck = $res->fetch_assoc()) {
+      while ($edition = $res->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>".$deck["nom_deck"]."</td>";
-            echo "<td>".$deck["id_joueur"]."</td>";
-            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\">Cartes</a></td>";
+            echo "<td>".$edition["nom_edition"]."</td>";
+            echo "<td>".$edition["nombre_de_tirage"]."</td>";
+            echo "<td>".$edition["date_impression"]."</td>";
+            echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"] ."\">Cartes</a></td>";
             echo "</tr>";
       }
       $connection->close();
@@ -41,15 +43,15 @@ function showAll($connection) {
 }
 
 /* Afficher toutes les parties d'un tournois donné en GET */
-function showCardsDeck($connection,$id) {
+function showCardsEdition($connection,$id) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes
-            INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
-            INNER JOIN Decks ON Decks.id_deck = Deck_contient_carte.id_deck
-            WHERE Decks.id_deck = ?";
+            INNER JOIN Carte_est_edition ON Carte_est_edition.id_carte = Cartes.id_carte
+            INNER JOIN Editions ON Editions.id_edition = Carte_est_edition.id_edition
+            WHERE Editions.id_edition = ?";
 
-  echo "<h1> Cartes du deck ".$id."</h1>";
-
+  echo "<h1> Cartes de l'édition ".$id."</h1>";
+  
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);

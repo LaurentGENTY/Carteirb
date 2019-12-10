@@ -16,6 +16,8 @@ function showCards($connection) {
             INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
             INNER JOIN Decks ON Decks.id_deck = Deck_contient_carte.id_deck;";
 
+  echo "<h1>Liste des cartes</h1>";
+
   if ($res = $connection->query($requete)) {
 
       echo "<table>";
@@ -56,6 +58,7 @@ function showCard($connection,$id) {
             FROM Cartes
             WHERE Cartes.id_carte = ?";
 
+  echo "<h1> Détail de la carte ".$id."</h1>";
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);
@@ -98,7 +101,7 @@ function showCard($connection,$id) {
       }
 
       ?> </div>
-        <div class="col s5">
+        <div class="col s7">
       <?php
 
       $requete_caracs="SELECT DISTINCT Caracteristiques.type_caracteristique, Caracteristiques.valeur_caracteristique
