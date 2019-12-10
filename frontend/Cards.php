@@ -23,14 +23,61 @@ if(isset($_GET["id"])) {
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
-            FROM Cartes
-            INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
-            INNER JOIN Decks ON Decks.id_deck = Deck_contient_carte.id_deck;";
+            FROM Cartes;";
 
-  echo "<h1>Liste des cartes</h1>";
+  //echo "<h1>Liste des cartes</h1>";
 
   if ($res = $connection->query($requete)) {
+    echo "<script>";
+    echo "$(document).ready(function() {";
+    echo "$('select').material_select();";
+    echo "});";
+    echo "</script>";
 
+    echo "<h1> Ajouter une carte </h1>";
+    echo "<p>";
+    echo "Type de carte (à choisir avant la suite) :";
+      //echo "  <form action='#' method='post'>";
+      echo "<div class='input-field col s12'>";
+      echo "     <select name='type'>";
+      echo "          <option selected='default'> </option>";
+      echo "          <option value='Monstre'> Monstre </option>";
+      echo "          <option value='Magie'> Magie </option>";
+      echo "          <option value='Piège'> Piège </option>";
+      echo "          <option value='Terrain'> Terrain </option>";
+      echo "      </select> <label> Type </label> <br/>";
+      echo "</div>";
+
+
+  //  echo "      <input type='submit' name='submit' value='Valider le type' />";
+      //echo "  </form>";
+
+
+        if(!empty($_POST["type"]))
+        if($_POST["type"] == "Monstre"){
+            echo "Attaque :";
+            echo "<input type='number' name='Attaque'/>";
+            echo "</br>";
+            echo "Défense :";
+            echo "<input type='number' name='Defense' />";
+            echo "</br>";
+        }
+
+        echo "</p>";
+        echo "<p> Titre :";
+        echo "  <form action='add_card.php' method='post'>";
+        echo "    <input type='text' name='title'/> <br/>";
+        echo "    Nature :";
+        echo "    <input type='text' name='nature'/> <br/>";
+        echo "    Famille :";
+        echo "    <input type='text' name='family'/> <br/>";
+        echo "    Type :";
+        echo "    <input type='text' name='Type' hidden placeholder=".$_POST['type'];
+        echo '/>';
+            echo $_POST["type"]. "<br/>";
+            echo "<input type='submit' name='submit' value='Valider' /></form>";
+
+      echo "<h1> Modifier des cartes </h1>";
       echo "<table>";
       echo "<thead>";
 
@@ -41,6 +88,7 @@ function showCards($connection) {
       echo "<th><i class=\"material-icons\">whatshot</i>Nature</th>";
       echo "<th><i class=\"material-icons\">apps</i>Famille</th>";
       echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
+      echo "<th><i class=\"material-icons\">delete</i>Supprimer</th>";
 
       echo "</tr>";
       echo "</thead>";
@@ -54,6 +102,7 @@ function showCards($connection) {
         echo "<td>".$card["nature"]."</td>";
         echo "<td>".$card["famille"]."</td>";
         echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\">Voir Carte</a></td>";
+        echo "<td><a href=\"/deleteCard.php?id=".$card["id_carte"]."\"> <i class=\"material-icons\">delete</i></a></td>";
         echo "</tr>";
       }
 
