@@ -16,13 +16,13 @@ function add_edition($connection) {
     echo "Nombre d'impression";
     echo "<input type='number' class='validate' name='Impression'/></br>";
     echo "Date";
-    echo "<input type='datetime-local' class='validate' name='Date'/>";
+    echo "<input type='text' class='validate' name='Date'/>";
     echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter une édition</button>";
     echo "</form>";
     if(isset($_GET["Edition"]) && isset($_GET["Impression"]) && isset($_GET["Date"])){
         $requete="INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES (?,?,?);";
         if($stmt = $connection->prepare($requete)){
-            $stmt->bind_param('sdd',$_GET["Edition"],$_GET["Impression"],$_GET["Date"]);
+            $stmt->bind_param('sid',$_GET["Edition"],$_GET["Impression"],$_GET["Date"]);
             $stmt->execute();
             $stmt->close();
         }

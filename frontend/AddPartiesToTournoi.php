@@ -5,18 +5,16 @@ include "connect.php";
 /* si on a donne en GET un tournoi en particulier on va chercher les parties associees */
 if(isset($_GET["id"])) {
   $id_tournoi = $_GET["id"];
-  showPartiesTournoi($connection,$id_tournoi);
-} else {
-  addPartiesTournois($connection);
-  showAllTournois($connection);
+  AddParties($connection,$id_tournoi);
+  ShowDeck($connection,);
 }
 
 
-function addPartiesTournois($connection){
-  echo "<h1> Ajout de tournois </h1>";
+function addParties($connection,$id_tournoi){
+  echo "<h1> Ajout de Parties </h1>";
   echo "</p>";
-  echo "<p> Lieu du Tournoi :";
-  echo "  <form action='AddTournoi.php' method='post'>";
+  echo "<p> id_joueur1 :";
+  echo "  <form action='addTournoi.php' method='post'>";
   echo "    <input type='text' name='Lieu'/> <br/>";
   echo "    Date du tournoi :";
   echo "    <input type='text' name='Date'/> <br/>";
