@@ -25,55 +25,7 @@ function showCards($connection) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes;";
 
-  //echo "<h1>Liste des cartes</h1>";
-
   if ($res = $connection->query($requete)) {
-
-
-    echo "<h1> Ajouter une carte </h1>";
-    echo "<p>";
-    echo "Type de carte (à choisir avant la suite) :";
-      //echo "  <form action='#' method='post'>";
-      echo "<div class='input-field col s12'>";
-      echo "     <select name='type'>";
-      echo "          <option disabled selected> </option>";
-      echo "          <option value='Monstre'> Monstre </option>";
-      echo "          <option value='Magie'> Magie </option>";
-      echo "          <option value='Piège'> Piège </option>";
-      echo "          <option value='Terrain'> Terrain </option>";
-      echo "      </select> <label> Type </label> <br/>";
-      echo "</div>";
-
-      echo "<div class='input-field col s12'>";
-      echo "<select>";
-      echo "<option value='' disabled selected>Choose your option</option>";
-      echo "<option value='1'>Option 1</option>";
-      echo "<option value='2'>Option 2</option>";
-      echo "<option value='3'>Option 3</option>";
-      echo "</select>";
-      echo "<label>Materialize Select</label>";
-      echo "</div>";
-
-      echo "<script>";
-      echo "$(document).ready(function() {";
-      echo "$('select').material_select();";
-      echo "});";
-      echo "var instance = M.FormSelect.getInstance(elem);";
-      echo "</script>";
-  //  echo "      <input type='submit' name='submit' value='Valider le type' />";
-      //echo "  </form>";
-
-
-        if(!empty($_POST["type"]))
-        if($_POST["type"] == "Monstre"){
-            echo "Attaque :";
-            echo "<input type='number' name='Attaque'/>";
-            echo "</br>";
-            echo "Défense :";
-            echo "<input type='number' name='Defense' />";
-            echo "</br>";
-        }
-
         echo "</p>";
         echo "<p> Titre :";
         echo "  <form action='add_card.php' method='post'>";
@@ -83,9 +35,9 @@ function showCards($connection) {
         echo "    Famille :";
         echo "    <input type='text' name='family'/> <br/>";
         echo "    Type :";
-        echo "    <input type='text' name='Type' hidden placeholder=".$_POST['type'];
-        echo '/>';
-            echo $_POST["type"]. "<br/>";
+        echo "    <input type='text' name='Type'/> <br/>";
+        echo "    Image :";
+        echo "    <input type='text' name='URL'/> <br/>";
             echo "<input type='submit' name='submit' value='Valider' /></form>";
 
       echo "<h1> Modifier des cartes </h1>";
