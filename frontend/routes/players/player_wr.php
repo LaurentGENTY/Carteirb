@@ -28,8 +28,7 @@ if($res = $connection->query($requete))
 /* ... on récupère un tableau stockant le résultat */
  while ($joueur =  $res->fetch_assoc()) {
    echo "\t".'<tr><td>'.$joueur['Joueur'].'</td>';
-   echo '<td>'.$joueur['Adversaire_le_plus_vaincu'].'</td>';
-   echo '<td>'.$joueur['Nombre_de_victoires_enregistré'].'</td>';
+   echo '<td>'.$joueur['WinRate'].'</td>';
    echo '</tr>'."\n";
  }
   /*liberation de l'objet requete:*/
