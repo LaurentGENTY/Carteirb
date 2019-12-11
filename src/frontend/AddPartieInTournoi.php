@@ -29,7 +29,7 @@ else{
 
 if ($error) {
   echo "All fields are required.";
-  header("Location: /Decks.php");
+  header("Location: /Erreur.php");
   exit("All fields are required.");
 } else {
   echo "Proceed...";

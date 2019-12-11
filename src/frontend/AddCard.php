@@ -12,7 +12,7 @@ $error = false;
 
 if($_POST['Type'] != 'Monstre' && $_POST['Type'] != 'Fusion' && $_POST['Type'] != 'Fusion' && $_POST['Type'] != 'Magie' && $_POST['Type'] !='Piège'){
   echo "All fields are required.";
-  header("Location: /Cards.php");
+  header("Location: /Erreur.php");
   exit("Type non conforme");
 }
 
@@ -24,7 +24,7 @@ foreach($required as $field) {
 
 if ($error) {
   echo "All fields are required.";
-  header("Location: /Cards.php");
+  header("Location: /Erreur.php");
   exit("All fields are required.");
 } else {
   echo "Proceed...";
@@ -32,9 +32,9 @@ if ($error) {
 $nat=true;
 if(empty($_POST['nature'])){
   $nat=false;
-  if($_POST['Type'] == 'Monstre' || $_POST['Type'] == 'Fusion' || $_POST['Type'] == 'Fusion'){
+  if($_POST['Type'] == 'Monstre' || $_POST['Type'] == 'Fusion' || $_POST['Type'] == 'XYZ'){
     echo "error";
-    header("Location: /Cards.php");
+    header("Location: /Erreur.php");
     exit("Nature non spécifiée alors qu'elle devrait l'être");
   }
 }
