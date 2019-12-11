@@ -5,12 +5,43 @@ include "Header.php";
 if(isset($_GET["id"])) {
   $id_edition = $_GET["id"];
   showCardsEdition($connection,$id_edition);
+  add_edition($connection);
 } else {
   showEditions($connection);
 }
 
 function add_edition($connection) {
-    echo "<form class='col s12' method='get'>";
+?>
+  <div class="row">
+    <form action="AddEdition.php" class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">title</i>
+          <input placeholder="Titre de l'édition" id="titre" type="text" class="validate" name="Edition">
+          <label class="active" for="titre">Titre de l'édition</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">format_list_numbered</i>
+            <input  placeholder="Nombre d'impression" id="typ" type="number" class="validate" name="Impression">
+            <label class="active" for="typ">Nombre d'impression</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">date_range</i>
+          <input  placeholder="Date de l'impression" id="nat" type="text" class="validate" name="Date">
+          <label class="active" for="nat">Date de l'impression</label>
+        </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">Enregistrer
+          <i class="material-icons right">send</i>
+        </button>
+        </form>
+      </div>
+  <?php
+    echo "<form action='AddEdition.php' class='col s12' method='post'>";
     echo "<p> Titre";
     echo "<input type='text' class='validate' name='Edition'/></br>";
     echo "Nombre d'impression";
@@ -19,14 +50,7 @@ function add_edition($connection) {
     echo "<input type='text' class='validate' name='Date'/>";
     echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter une édition</button>";
     echo "</form>";
-    if(isset($_GET["Edition"]) && isset($_GET["Impression"]) && isset($_GET["Date"])){
-        $requete="INSERT INTO Editions (nom_edition,nombre_de_tirage,date_impression) VALUES (?,?,?);";
-        if($stmt = $connection->prepare($requete)){
-            $stmt->bind_param('sid',$_GET["Edition"],$_GET["Impression"],$_GET["Date"]);
-            $stmt->execute();
-            $stmt->close();
-        }
-    }
+
 }
 
 /* Afficher tous les decks de la BD */
@@ -55,7 +79,7 @@ function showEditions($connection) {
             echo "<tr>";
             echo "<td>".$edition["nom_edition"]."</td>";
             echo "<td>".$edition["nombre_de_tirage"]."</td>";
-            echo "<td>".$edition["date_impression"]."</td>";
+            echo "<td>".date($edition["date_impression"])."</td>";
             echo "<td><a href=\"/Editions.php?id=". $edition["id_edition"]  ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
                       <a href=\"/DeleteEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">delete</i></a>
                       <a href=\"/AddCardEdition.php?id=".$edition["id_edition"] ."\"><i class=\"material-icons\">add</i></a></td>";
