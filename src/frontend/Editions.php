@@ -69,7 +69,7 @@ function showEditions($connection) {
 
 /* Afficher toutes les parties d'un tournois donné en GET */
 function showCardsEdition($connection,$id) {
-  $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
+  $requete="SELECT Cartes.titre, Cartes.image, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes
             INNER JOIN Carte_est_edition ON Carte_est_edition.id_carte = Cartes.id_carte
             INNER JOIN Editions ON Editions.id_edition = Carte_est_edition.id_edition
@@ -80,7 +80,7 @@ function showCardsEdition($connection,$id) {
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id);
-      $stmt->bind_result($titre, $id_carte, $type, $nature, $famille);
+      $stmt->bind_result($titre, $image, $id_carte, $type, $nature, $famille);
       $stmt->execute();
 
       echo "<table>";
@@ -88,6 +88,7 @@ function showCardsEdition($connection,$id) {
 
       echo "<tr>";
       echo "<th><i class=\"material-icons\">title</i>Titre</th>";
+      echo "<th><i class=\"material-icons\">insert_photo</i>Image</th>";
       echo "<th><i class=\"material-icons\">format_list_numbered</i>Id carte</th>";
       echo "<th><i class=\"material-icons\">merge_type</i>Type</th>";
       echo "<th><i class=\"material-icons\">whatshot</i>Nature</th>";
@@ -101,6 +102,7 @@ function showCardsEdition($connection,$id) {
       while($stmt->fetch()) {
         echo "<tr>";
         echo "<td>".$titre."</td>";
+        echo "<td><img src=\"".$image."\" style=\"width:50%;height:121px;\"/></td>";
         echo "<td>".$id_carte."</td>";
         echo "<td>".$type."</td>";
         echo "<td>".$nature."</td>";
@@ -115,5 +117,6 @@ function showCardsEdition($connection,$id) {
       $stmt->close();
   }
 }
+include "Footer.php";
 
 ?>
