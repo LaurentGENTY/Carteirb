@@ -35,8 +35,8 @@ function add_edition($connection) {
           <label class="active" for="nat">Date de l'impression</label>
         </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Enregistrer
-          <i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit">Ajouter une édition
+          <i class="material-icons right">add</i>
         </button>
         </form>
       </div>

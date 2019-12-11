@@ -28,6 +28,11 @@ if ($error) {
   echo "Proceed...";
 }
 
+if(0 > $_POST["Quality"] || $_POST["Quality"] > 100){
+    header("Location: /Erreur.php");
+    exit();
+}
+
 if($stt = $connection->prepare("SELECT id_edition FROM Editions WHERE Editions.nom_edition = ?")){
     $stt->bind_param('s',$_POST['Edition']);
     $stt->bind_result($edition);
@@ -41,9 +46,14 @@ if($stt = $connection->prepare("SELECT id_edition FROM Editions WHERE Editions.n
         $sttt->fetch();
         $sttt->close();
         if ($stmt = $connection->prepare("INSERT INTO Exemplaires (date_acquisition, mode_acquisition, date_perte,qualite,effet_impression,id_edition,id_carte,id_joueur) VALUES (?, ?, ?, ?, ?, ?, ?, ?);")) {
-            $stmt->bind_param('dsdisiii', $_POST['DateAcq'],$_POST['ModeAcq'],$_POST['DateLos'], $_POST['Quality'],$_POST['ImpressionEffect'],$edition,$carte,$_COOKIE['id_joueur']);
+            if(empty($edition) || empty($carte)){
+                header("Location: /Erreur.php");
+                exit();
+            }
+            $stmt->bind_param('sssisiii', $_POST['DateAcq'],$_POST['ModeAcq'],$_POST['DateLos'], $_POST['Quality'],$_POST['ImpressionEffect'],$edition,$carte,$_COOKIE['id_joueur']);
             $stmt->execute();
             $stmt->close();
+
         }
     }
 }

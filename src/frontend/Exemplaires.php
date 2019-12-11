@@ -47,7 +47,7 @@ function addExemplaire($connection,$id_joueur) {
         <div class="row">
           <div class="input-field col s6">
               <i class="material-icons prefix">apps</i>
-              <input  placeholder="Date acquisition" id="DateAcq" type="date" class="validate" name="DateAcq">
+              <input  placeholder="Date acquisition" id="DateAcq" type="text" class="validate" name="DateAcq">
               <label class="active" for="DateAcq">Date d'acquisition</label>
           </div>
         </div>
@@ -61,7 +61,7 @@ function addExemplaire($connection,$id_joueur) {
             <div class="row">
               <div class="input-field col s6">
                   <i class="material-icons prefix">apps</i>
-                  <input  placeholder="Date de perte" id="DateLos" type="date" class="validate" name="DateLos">
+                  <input  placeholder="Date de perte" id="DateLos" type="text" class="validate" name="DateLos">
                   <label class="active" for="DateLos">Date de perte </label>
               </div>
             </div>

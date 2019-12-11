@@ -20,8 +20,8 @@ function add_deck($connection) {
           <label class="active" for="title">Titre du deck</label>
         </div>
       </div>
-    <button class="btn waves-effect waves-light" type="submit">Enregistrer
-      <i class="material-icons right">send</i>
+    <button class="btn waves-effect waves-light" type="submit">Ajouter un deck
+      <i class="material-icons right">add</i>
     </button>
     </form>
   </div>

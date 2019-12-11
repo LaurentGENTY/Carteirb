@@ -61,8 +61,8 @@ function AddCardsForm($connection){
               <label class="active" for="im">Lien de l'image de la carte</label>
             </div>
           </div>
-    <button class="btn waves-effect waves-light" type="submit">Enregistrer
-      <i class="material-icons right">send</i>
+    <button class="btn waves-effect waves-light" type="submit">Ajouter une carte
+      <i class="material-icons right">add</i>
     </button>
     </form>
   </div>
@@ -87,8 +87,8 @@ function AddCaracteristic($connection, $id_card) {
               <label class="active" for="valeur">Valeur ou description de la caractéristique</label>
             </div>
           </div>
-          <button class="btn waves-effect waves-light" type="submit">Enregistrer
-            <i class="material-icons right">send</i>
+          <button class="btn waves-effect waves-light" type="submit">Ajouter une caractéristique
+            <i class="material-icons right">add</i>
           </button>
           </form>
         </div>

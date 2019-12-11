@@ -37,8 +37,8 @@ function addPartiesTournois($connection){
           <label class="active" for="date">Date du tournoi</label>
         </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Enregistrer
-          <i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit">Ajouter un tournoi
+          <i class="material-icons right">add</i>
         </button>
         </form>
       </div> <?php

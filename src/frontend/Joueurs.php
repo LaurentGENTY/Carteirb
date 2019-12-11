@@ -51,8 +51,8 @@ function add_joueur($connection) {
           <label class="active" for="pseudo">Pseudo du joueur</label>
         </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Enregistrer
-          <i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit">Ajouter un joueur
+          <i class="material-icons right">add</i>
         </button>
         </form>
       </div>
@@ -86,7 +86,13 @@ function showJoueurs($connection) {
             echo "<tr>";
             echo "<td>".$joueur["nom"]."</td>";
             echo "<td>".$joueur["prenom"]."</td>";
-            echo "<td>".$joueur["pseudo"]."</td>";
+            echo "<td>";
+            if(isset($_GET["pv"])){
+            if( $_GET["pv"]!=$joueur["id_joueur"]){
+            echo $joueur["pseudo"]."<a href=\"/Joueurs.php?pv=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">edit</i></a>";}
+            else { echo " <form action='UpdatePseudo.php?id= ".$joueur["id_joueur"]."'class='col s12' method='post'><input placeholder='Pseudo' id='pseudo' type='text' class='validate' name='pseudo'><button class='btn waves-effect waves-light' type='submit'><i class='material-icons right'>add</i></button></form>";}}
+            else echo $joueur["pseudo"]."<a href=\"/Joueurs.php?pv=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">edit</i></a><a href=\"/Joueurs.php?pv=". $joueur["id_joueur"] ."\"><i class=\"material-icons\"></i></a>";
+            echo "</td>";
             echo "<td>".$joueur["nbExemplaires"]."</td>";
             echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
                       <a href=\"/DeleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";

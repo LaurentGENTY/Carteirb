@@ -34,8 +34,8 @@ function AddParties($connection,$id_tournoi){
           <label class="active" for="res">Résultat du joueur 1 (VICTOIRE ou DEFAITE)</label>
         </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Enregistrer
-          <i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit">Ajouter une partie
+          <i class="material-icons right">add</i>
         </button>
         </form>
       </div>
