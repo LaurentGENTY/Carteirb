@@ -6,7 +6,7 @@ include "connect.php";
 if(isset($_GET["id"])) {
   $id_tournoi = $_GET["id"];
   AddParties($connection,$id_tournoi);
-  ShowDeck($connection,);
+  showPartiesTournoi($connection,$id_tournoi);
 }
 
 
