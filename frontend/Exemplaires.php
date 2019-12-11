@@ -14,7 +14,7 @@ if(isset($_GET["id"])) {
 
 /* Afficher les cartes dun joueur */
 function showExemplaireJoueur($connection,$id_joueur) {
-  $requete="SELECT Cartes.titre, Editions.nom_edition, Editions.id_edition, Exemplaires.date_acquisition, Exemplaires.mode_acquisition, Exemplaires.date_perte, Exemplaires.qualite, Exemplaires.effet_impression, Cartes.id_carte
+  $requete="SELECT Cartes.titre, Editions.nom_edition, Editions.id_edition, Exemplaires.date_acquisition, Exemplaires.mode_acquisition, Exemplaires.date_perte, Exemplaires.qualite, Exemplaires.effet_impression, Cartes.id_carte, Exemplaires.id_exemplaire
             FROM Cartes
             INNER JOIN Exemplaires ON Cartes.id_carte = Exemplaires.id_carte
             INNER JOIN Editions ON Exemplaires.id_edition = Editions.id_edition
@@ -25,7 +25,7 @@ function showExemplaireJoueur($connection,$id_joueur) {
   if ($stmt = $connection->prepare($requete)) {
 
       $stmt->bind_param('i', $id_joueur);
-      $stmt->bind_result($titre, $nom_edition, $id_edition, $date_a, $mode_a, $date_p, $qualite, $effet, $id_carte);
+      $stmt->bind_result($titre, $nom_edition, $id_edition, $date_a, $mode_a, $date_p, $qualite, $effet, $id_carte, $id_exemplaire);
       $stmt->execute();
 
       echo "<table>";
@@ -56,7 +56,8 @@ function showExemplaireJoueur($connection,$id_joueur) {
         echo "<td>".$date_p."</td>";
         echo "<td>".$qualite."</td>";
         echo "<td>".$effet."</td>";
-        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">pageview</i></a></td>";
+        echo "<td><a href=\"/Cards.php?id=". $id_carte ."\"><i class=\"material-icons\">pageview</i></a>
+                  <a href=\"/DeleteExemplaire.php?id=". $id_exemplaire ."&id_joueur=". $id_joueur."\"><i class=\"material-icons\">delete</i></a></td>";
         echo "</tr>";
       }
       $stmt->close();

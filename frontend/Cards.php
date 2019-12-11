@@ -16,14 +16,15 @@ if(isset($_GET["id"])) {
   $id_card = $_GET["id"];
   showCard($connection,$id_card);
 } else {
-    AddCardsForm($connection);
+  AddCardsForm($connection);
   showCards($connection);
 }
 
 function AddCardsForm($connection){
   ?>
+  <h1> Ajout d'une carte </h1>
   <div class="row">
-    <form class="col s12" method="post">
+    <form action="/AddCard.php" class="col s12" method="post">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">title</i>
@@ -73,20 +74,6 @@ function showCards($connection) {
             FROM Cartes;";
 
   if ($res = $connection->query($requete)) {
-
-        // echo "</p>";
-        // echo "<p> Titre :";
-        // echo "  <form action='add_card.php' method='post'>";
-        // echo "    <input type='text' name='title'/> <br/>";
-        // echo "    Nature :";
-        // echo "    <input type='text' name='nature'/> <br/>";
-        // echo "    Famille :";
-        // echo "    <input type='text' name='family'/> <br/>";
-        // echo "    Type :";
-        // echo "    <input type='text' name='Type'/> <br/>";
-        // echo "    Image :";
-        // echo "    <input type='text' name='URL'/> <br/>";
-        //     echo "<input type='submit' name='submit' value='Valider' /></form>";
 
       echo "<h1> Modifier des cartes </h1>";
       echo "<table>";

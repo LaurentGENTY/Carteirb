@@ -42,29 +42,17 @@ if(empty($_POST['nature'])){
 if($nat){
   if(empty($_POST['URL'])){
     if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille) VALUES (?, ?, ?, ?);")) {
-        //$type = "Monstre";
         $stmt->bind_param('ssss', $_POST['title'],$_POST['Type'],$_POST['nature'],$_POST['family']);
-      // $stmt->bindParam(1, $_POST['title']);
-      // $stmt->bind_param(2, "Monstre");
-      // $stmt->bind_param(3, $_POST['nature']);
-      // $stmt->bind_param(4, $_POST['family']);
 
         $stmt->execute();
         $stmt->close();
       }
       $connection->close();
-      echo "hey";
       header("Location: /Cards.php");
       exit();
     }
     if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, nature, famille, image) VALUES (?, ?, ?, ?, ?);")) {
-    //$type = "Monstre";
       $stmt->bind_param('sssss', $_POST['title'],$_POST['Type'],$_POST['nature'],$_POST['family'],$_POST['URL']);
-    // $stmt->bindParam(1, $_POST['title']);
-    // $stmt->bind_param(2, "Monstre");
-    // $stmt->bind_param(3, $_POST['nature']);
-    // $stmt->bind_param(4, $_POST['family']);
-
       $stmt->execute();
       $stmt->close();
     }
@@ -76,13 +64,7 @@ else{
   if(empty($_POST['URL'])){
     if($field != 'Monstre')
     if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, famille) VALUES (?, ?, ?);")) {
-        //$type = "Monstre";
         $stmt->bind_param('sss', $_POST['title'],$_POST['Type'],$_POST['family']);
-      // $stmt->bindParam(1, $_POST['title']);
-      // $stmt->bind_param(2, "Monstre");
-      // $stmt->bind_param(3, $_POST['nature']);
-      // $stmt->bind_param(4, $_POST['family']);
-
         $stmt->execute();
         $stmt->close();
       }
@@ -92,13 +74,7 @@ else{
     }
 
     if ($stmt = $connection->prepare("INSERT INTO Cartes (titre, type_carte, famille, image) VALUES (?, ?, ?, ?);")) {
-    //$type = "Monstre";
       $stmt->bind_param('ssss', $_POST['title'],$_POST['Type'],$_POST['family'],$_POST['URL']);
-    // $stmt->bindParam(1, $_POST['title']);
-    // $stmt->bind_param(2, "Monstre");
-    // $stmt->bind_param(3, $_POST['nature']);
-    // $stmt->bind_param(4, $_POST['family']);
-
       $stmt->execute();
       $stmt->close();
       $connection->close();
