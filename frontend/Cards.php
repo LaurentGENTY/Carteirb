@@ -69,6 +69,34 @@ function AddCardsForm($connection){
       <?php
 }
 
+function AddCaracteristic($connection, $id_card) {
+  ?>
+    <div class="row">
+      <form action="AddCaracteristiques.php/?id=".$id_card class="col s12" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">title</i>
+            <input placeholder="Type de carctéristique" id="type_caracteristique" type="text" class="validate" name="type">
+            <label class="active" for="Nom">Type de carctéristique</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+              <i class="material-icons prefix">merge_type</i>
+              <input  placeholder="Valeur ou description de la caractéristique" id="valeur_caracteristique" type="text" class="validate" name="valeur">
+              <label class="active" for="typ">Valeur ou description de la caractéristique</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">Enregistrer
+            <i class="material-icons right">send</i>
+          </button>
+          </form>
+        </div>
+  <?php
+
+      
+  }
+
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
@@ -113,6 +141,10 @@ function showCards($connection) {
 
 /* Afficher toutes les cartes données en GET */
 function showCard($connection,$id) {
+
+  echo "<h1>Ajout d'une caractéristique</h1>";
+  AddCaracteristic($connection, $id);
+
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille, Cartes.image
             FROM Cartes
             WHERE Cartes.id_carte = ?";
