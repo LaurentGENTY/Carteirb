@@ -24,7 +24,7 @@
                <li><a href="index.php"><i class="material-icons">home</i>Accueil</a></li>
                <?php if (isset($_COOKIE["id_joueur"])) {
                  echo "<li><a href=\"logout.php\"><i class=\"material-icons\">people</i>Se déconnecter</a></li>";
-                 echo "<li><a href=\"Joueurs.php?id=".$_COOKIE["id_joueur"]."\"><i class=\"material-icons\">people</i>Mon profil</a></li>";
+                 echo "<li><a href=\"Exemplaires.php?id=".$_COOKIE["id_joueur"]."\"><i class=\"material-icons\">people</i>Mes cartes</a></li>";
                } else {
                  echo "<li><a href=\"login.php\"><i class=\"material-icons\">people</i>Se connecter</a></li>";
                } ?>

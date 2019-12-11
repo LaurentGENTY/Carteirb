@@ -25,6 +25,36 @@ if(isset($_GET["id"])) {
 }
 
 function add_joueur($connection) {
+?>
+  <div class="row">
+    <form class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">title</i>
+          <input placeholder="Nom du joueur" id="Nom" type="text" class="validate" name="Nom">
+          <label class="active" for="Nom">Nom du joueur</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">merge_type</i>
+            <input  placeholder="Prenom du joueur" id="Prenom" type="text" class="validate" name="Prenom">
+            <label class="active" for="typ">Prenom du joueur</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">whatshot</i>
+          <input  placeholder="Pseudo du joueur" id="Pseudo" type="text" class="validate" name="Pseudo">
+          <label class="active" for="nat">Pseudo du joueur</label>
+        </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">Enregistrer
+          <i class="material-icons right">send</i>
+        </button>
+        </form>
+      </div>
+<?php
     echo "<form class='col s12' method='get'>";
     echo "<p> Nom";
     echo "<input type='text' class='validate' name='Nom'/></br>";

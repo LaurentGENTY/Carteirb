@@ -10,19 +10,22 @@ if(isset($_GET["id"])) {
 }
 
 function add_deck($connection) {
-    echo "<form class='col s12' method='get'>";
-    echo "<p> Titre";
-    echo "<input type='text' class='validate' name='Titre'/></p>";
-    echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter un deck</button>";
-    echo "</form>";
-    if(isset($_GET["Titre"])){
-        $requete="INSERT INTO Decks (nom_deck,id_joueur) VALUES (?,?);";
-        if($stmt = $connection->prepare($requete)){
-            $stmt->bind_param('si',$_GET["Titre"],$_COOKIE["id_joueur"]);
-            $stmt->execute();
-            $stmt->close();
-        }
-    }
+  ?>
+  <div class="row">
+    <form action="/AddDeck.php" class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">title</i>
+          <input placeholder="Titre du deck" id="title" type="text" class="validate" name="title">
+          <label class="active" for="title">Titre du deck</label>
+        </div>
+      </div>
+    <button class="btn waves-effect waves-light" type="submit">Enregistrer
+      <i class="material-icons right">send</i>
+    </button>
+    </form>
+  </div>
+      <?php
 }
 
 /* Afficher tous les decks de la BD */
@@ -50,10 +53,11 @@ function showAll($connection) {
             echo "<tr>";
             echo "<td>".$deck["nom_deck"]."</td>";
             echo "<td>".$deck["id_joueur"]."</td>";
-            if($deck["id_joueur"] == $_COOKIE["id_joueur"])
-            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
-                      <a href=\"/DeleteDeck.php?id=".$deck["id_deck"]."\"><i class=\"material-icons\">delete</i></a>
+            echo "<td><a href=\"/Decks.php?id=". $deck["id_deck"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>";
+            if(isset($_COOKIE["id_joueur"]) && $deck["id_joueur"] == $_COOKIE["id_joueur"])
+                      echo "<a href=\"/DeleteDeck.php?id=".$deck["id_deck"]."\"><i class=\"material-icons\">delete</i></a>
                       <a href=\"/AddCardToDeck.php?id_deck=".$deck["id_deck"]."\"><i class=\"material-icons\">add</i></a></td>";
+            echo "</td>";
             echo "</tr>";
       }
       $connection->close();
@@ -64,6 +68,14 @@ function showAll($connection) {
 
 /* Afficher toutes les parties d'un tournois donné en GET */
 function showCardsDeck($connection,$id) {
+  ?>
+
+  <div class="collection">
+    <a class="waves-effect waves-light btn" href="/AddCardToDeck.php"><i class="material-icons left">show_chart</i>Ajout d'une carte à ce deck</a>
+  </div>
+
+  <?php
+
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
             FROM Cartes
             INNER JOIN Deck_contient_carte ON Deck_contient_carte.id_carte = Cartes.id_carte
@@ -112,4 +124,5 @@ function showCardsDeck($connection,$id) {
   }
 }
 
+include "Footer.php";
 ?>

@@ -8,7 +8,6 @@ $required = array('title');
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
 
-
 foreach($required as $field) {
   if (empty($_POST[$field])) {
     $error = true;
@@ -21,13 +20,21 @@ if ($error) {
   echo "Proceed...";
 }
 
-if ($stmt = $connection->prepare("INSERT INTO Decks (nom_deck,id_joueur) VALUES (?,?);")) {
-    echo $_COOKIE['id'];
-    $stmt->bind_param('si', $_POST['title'],$_COOKIE['id']);
+/* si le joueur nest pas conencte alors il ne peut pas créer de deck */
+if(!isset($_COOKIE["id_joueur"])) {
+  header("Location: /Decks.php");
+  exit("Pas de joueur connecté");
+}
+
+$nom = $_POST["title"];
+$id_joueur = $_COOKIE["id_joueur"];
+
+if ($stmt = $connection->prepare("INSERT INTO Decks (nom_deck,id_joueur) VALUES (?,?)")) {
+    $stmt->bind_param('si', $nom,$id_joueur);
     $stmt->execute();
     $stmt->close();
 }
 $connection->close();
-include "Decks.php";
+header("Location: /Decks.php");
 exit();
 ?>
