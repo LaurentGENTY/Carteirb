@@ -4,8 +4,8 @@ include "Header.php";
 
 if(isset($_GET["id"])) {
   $id_edition = $_GET["id"];
-  showCardsEdition($connection,$id_edition);
   add_edition($connection);
+  showCardsEdition($connection,$id_edition);
 } else {
   showEditions($connection);
 }
