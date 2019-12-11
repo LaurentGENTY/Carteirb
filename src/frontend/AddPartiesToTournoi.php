@@ -12,7 +12,7 @@ if(isset($_GET["id"])) {
 
 function AddParties($connection,$id_tournoi){
 ?>  <div class="row">
-    <form action="/AddpartieInTournois.php?id=<?php echo $id_card?>" class="col s12" method="post">
+    <form action="/AddPartieInTournoi.php?id=<?php echo $id_tournoi?>" class="col s12" method="post">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">merge_type</i>
@@ -34,6 +34,20 @@ function AddParties($connection,$id_tournoi){
           <label class="active" for="res">Résultat du joueur 1 (VICTOIRE ou DEFAITE)</label>
         </div>
         </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">merge_type</i>
+            <input placeholder="Deck joueur 1" id="d1" type="text" class="validate" name="deck1">
+            <label class="active" for="d1">Deck joueur 1</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+              <i class="material-icons prefix">place</i>
+              <input  placeholder="Deck joueur 2" id="d2" type="text" class="validate" name="deck2">
+              <label class="active" for="d2">Deck joueur 2</label>
+            </div>
+          </div>
         <button class="btn waves-effect waves-light" type="submit">Enregistrer
           <i class="material-icons right">send</i>
         </button>
