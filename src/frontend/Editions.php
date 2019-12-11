@@ -41,15 +41,7 @@ function add_edition($connection) {
         </form>
       </div>
   <?php
-    echo "<form action='AddEdition.php' class='col s12' method='post'>";
-    echo "<p> Titre";
-    echo "<input type='text' class='validate' name='Edition'/></br>";
-    echo "Nombre d'impression";
-    echo "<input type='number' class='validate' name='Impression'/></br>";
-    echo "Date";
-    echo "<input type='text' class='validate' name='Date'/>";
-    echo "<button class='btn waves-effect waves-light' type='submit'>Ajouter une édition</button>";
-    echo "</form>";
+
 
 }
 
