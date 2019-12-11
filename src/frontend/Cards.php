@@ -99,7 +99,7 @@ function AddCaracteristic($connection, $id_card) {
 
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
-  $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
+  $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille, Cartes.image
             FROM Cartes;";
 
   if ($res = $connection->query($requete)) {
@@ -110,6 +110,7 @@ function showCards($connection) {
 
       echo "<tr>";
       echo "<th><i class=\"material-icons\">title</i>Titre</th>";
+      echo "<th><i class=\"material-icons\">insert_photo</i>Image</th>";
       echo "<th><i class=\"material-icons\">format_list_numbered</i>Id carte</th>";
       echo "<th><i class=\"material-icons\">merge_type</i>Type</th>";
       echo "<th><i class=\"material-icons\">whatshot</i>Nature</th>";
@@ -123,6 +124,7 @@ function showCards($connection) {
       while ($card = $res->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$card["titre"]."</td>";
+        echo "<td><img src=\"".$card["image"]."\" style=\"width:50%;height:121px;\"/></td>";
         echo "<td>".$card["id_carte"]."</td>";
         echo "<td>".$card["type_carte"]."</td>";
         echo "<td>".$card["nature"]."</td>";
@@ -234,5 +236,6 @@ function showCard($connection,$id) {
       }
   }
 }
+include "Footer.php";
 
 ?>

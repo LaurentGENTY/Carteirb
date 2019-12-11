@@ -94,5 +94,6 @@ function showDecksPartie($connection,$id) {
       echo "</table>";
     }
 }
+include "Footer.php";
 
 ?>

@@ -66,3 +66,7 @@ if(isset($_GET["nom"]) && isset($_GET["prenom"])) {
   </button>
   </form>
 </div>
+
+<?php
+include "Footer.php";
+?>

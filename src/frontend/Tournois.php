@@ -13,16 +13,35 @@ if(isset($_GET["id"])) {
 
 
 function addPartiesTournois($connection){
-  echo "<h1> Ajout de tournois </h1>";
-  echo "</p>";
-  echo "<p> Lieu du Tournoi :";
-  echo "  <form action='AddTournoi.php' method='post'>";
-  echo "    <input type='text' name='Lieu'/> <br/>";
-  echo "    Date du tournoi :";
-  echo "    <input type='text' name='Date'/> <br/>";
-  echo "    Type de tournoi :";
-  echo "    <input type='text' name='Type'/> <br/>";
-      echo "<input type='submit' name='submit' value='Valider' /></form>";
+  ?><h1> Ajout d'un tournoi </h1>
+  <div class="row">
+    <form action="/AddTournoi.php" class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">merge_type</i>
+          <input placeholder="Type de tournoi" id="type" type="text" class="validate" name="type">
+          <label class="active" for="type">Type du tournoi</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">person_outline</i>
+            <input  placeholder="Lieu du tournoi" id="lieu" type="text" class="validate" name="lieu">
+            <label class="active" for="lieu">Lieu du tournoi</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">title</i>
+          <input  placeholder="Date du tournoi" id="date" type="text" class="validate" name="date">
+          <label class="active" for="date">Date du tournoi</label>
+        </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">Enregistrer
+          <i class="material-icons right">send</i>
+        </button>
+        </form>
+      </div> <?php
 }
 
 
