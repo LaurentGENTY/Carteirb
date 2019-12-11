@@ -14,6 +14,7 @@ Afin de faire marcher notre application vous devez avoir :
 - sql
 - machine de l'enseirb (pour pouvoir accéder au site pedago)
 - phpMyAdmin
+- navigateur (préférer firefox)
 
 # Installation
 
