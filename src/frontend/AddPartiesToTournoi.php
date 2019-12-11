@@ -6,21 +6,40 @@ include "connect.php";
 if(isset($_GET["id"])) {
   $id_tournoi = $_GET["id"];
   AddParties($connection,$id_tournoi);
-  ShowDeck($connection,);
+  showPartiesTournoi($connection,$id_tournoi);
 }
 
 
-function addParties($connection,$id_tournoi){
-  echo "<h1> Ajout de Parties </h1>";
-  echo "</p>";
-  echo "<p> id_joueur1 :";
-  echo "  <form action='addTournoi.php' method='post'>";
-  echo "    <input type='text' name='Lieu'/> <br/>";
-  echo "    Date du tournoi :";
-  echo "    <input type='text' name='Date'/> <br/>";
-  echo "    Type de tournoi :";
-  echo "    <input type='text' name='Type'/> <br/>";
-      echo "<input type='submit' name='submit' value='Valider' /></form>";
+function AddParties($connection,$id_tournoi){
+?>  <div class="row">
+    <form action="/AddpartieInTournois.php?id=<?php echo $id_card?>" class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">merge_type</i>
+          <input placeholder="Id joueur 1" id="j1" type="text" class="validate" name="adv1">
+          <label class="active" for="j1">Id joueur 1</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">place</i>
+            <input  placeholder="Id joueur 2" id="j2" type="text" class="validate" name="adv2">
+            <label class="active" for="j2">Id joueur 2</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">date_range</i>
+          <input  placeholder="Résultat du joueur 1 (VICTOIRE ou DEFAITE)" id="res" type="text" class="validate" name="resultat">
+          <label class="active" for="res">Résultat du joueur 1 (VICTOIRE ou DEFAITE)</label>
+        </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">Enregistrer
+          <i class="material-icons right">send</i>
+        </button>
+        </form>
+      </div>
+<?php
 }
 
 

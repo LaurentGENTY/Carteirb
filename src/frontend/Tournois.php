@@ -25,14 +25,14 @@ function addPartiesTournois($connection){
       </div>
       <div class="row">
         <div class="input-field col s6">
-            <i class="material-icons prefix">person_outline</i>
+            <i class="material-icons prefix">place</i>
             <input  placeholder="Lieu du tournoi" id="lieu" type="text" class="validate" name="lieu">
             <label class="active" for="lieu">Lieu du tournoi</label>
           </div>
         </div>
       <div class="row">
         <div class="input-field col s6">
-          <i class="material-icons prefix">title</i>
+          <i class="material-icons prefix">date_range</i>
           <input  placeholder="Date du tournoi" id="date" type="text" class="validate" name="date">
           <label class="active" for="date">Date du tournoi</label>
         </div>
