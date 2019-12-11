@@ -69,9 +69,37 @@ function AddCardsForm($connection){
       <?php
 }
 
+function AddCaracteristic($connection, $id_card) {
+  ?>
+    <div class="row">
+      <form action="AddCaracteristiques.php/?id=".$id_card class="col s12" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">title</i>
+            <input placeholder="Type de carctéristique" id="type_caracteristique" type="text" class="validate" name="type">
+            <label class="active" for="Nom">Type de carctéristique</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+              <i class="material-icons prefix">merge_type</i>
+              <input  placeholder="Valeur ou description de la caractéristique" id="valeur_caracteristique" type="text" class="validate" name="valeur">
+              <label class="active" for="typ">Valeur ou description de la caractéristique</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">Enregistrer
+            <i class="material-icons right">send</i>
+          </button>
+          </form>
+        </div>
+  <?php
+
+      
+  }
+
 /* Afficher tous les cartes de la BD */
 function showCards($connection) {
-  $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille
+  $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille, Cartes.image
             FROM Cartes;";
 
   if ($res = $connection->query($requete)) {
@@ -82,6 +110,7 @@ function showCards($connection) {
 
       echo "<tr>";
       echo "<th><i class=\"material-icons\">title</i>Titre</th>";
+      echo "<th><i class=\"material-icons\">insert_photo</i>Image</th>";
       echo "<th><i class=\"material-icons\">format_list_numbered</i>Id carte</th>";
       echo "<th><i class=\"material-icons\">merge_type</i>Type</th>";
       echo "<th><i class=\"material-icons\">whatshot</i>Nature</th>";
@@ -95,6 +124,7 @@ function showCards($connection) {
       while ($card = $res->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$card["titre"]."</td>";
+        echo "<td><img src=\"".$card["image"]."\" style=\"width:50%;height:121px;\"/></td>";
         echo "<td>".$card["id_carte"]."</td>";
         echo "<td>".$card["type_carte"]."</td>";
         echo "<td>".$card["nature"]."</td>";
@@ -113,6 +143,10 @@ function showCards($connection) {
 
 /* Afficher toutes les cartes données en GET */
 function showCard($connection,$id) {
+
+  echo "<h1>Ajout d'une caractéristique</h1>";
+  AddCaracteristic($connection, $id);
+
   $requete="SELECT Cartes.titre, Cartes.id_carte, Cartes.type_carte, Cartes.nature, Cartes.famille, Cartes.image
             FROM Cartes
             WHERE Cartes.id_carte = ?";
@@ -202,5 +236,6 @@ function showCard($connection,$id) {
       }
   }
 }
+include "Footer.php";
 
 ?>

@@ -7,9 +7,9 @@ showNbUses($connection);
 /* affiche le nb d'utilisations des cartes */
 function showNbUses($connection) {
 
-  $requete = "SELECT Cartes.id_carte, Cartes.titre, COUNT(Joueurs.id_joueur) AS nbJoueurs
+  $requete = "SELECT Cartes.id_carte, Cartes.titre, COUNT(Joueurs.id_joueur) AS nbJoueurs, Cartes.image
               FROM Cartes
-              INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
+              LEFT JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
               INNER JOIN Decks ON Deck_contient_carte.id_Deck = Decks.id_Deck
               INNER JOIN Joueurs ON Decks.id_joueur = Joueurs.id_joueur
               GROUP BY Cartes.id_carte, Cartes.titre, Cartes.type_carte, Cartes.nature, Cartes.famille
@@ -23,6 +23,7 @@ function showNbUses($connection) {
     echo "<thead>";
     echo "<tr>";
     echo "<th><i class=\"material-icons\">title</i>Titre</th>";
+    echo "<th><i class=\"material-icons\">insert_photo</i>Image</th>";
     echo "<th><i class=\"material-icons\">format_list_numbered</i>Id carte</th>";
     echo "<th><i class=\"material-icons\">format_list_numbered</i>Nombre d'utilisations</th>";
     echo "<th><i class=\"material-icons\">insert_link</i>Liens</th>";
@@ -33,6 +34,7 @@ function showNbUses($connection) {
       while ($card = $res->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$card["titre"]."</td>";
+        echo "<td><img src=\"".$card["image"]."\" style=\"width:50%;height:121px;\"/></td>";
         echo "<td>".$card["id_carte"]."</td>";
         echo "<td>".$card["nbJoueurs"]."</td>";
         echo "<td><a href=\"/Cards.php?id=". $card["id_carte"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
