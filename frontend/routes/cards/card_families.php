@@ -2,16 +2,15 @@
 
 include "../connect.php";
 
-$requete = "SELECT GlobalTable.famille, GlobalTable.type_caracteristique, GlobalTable.valeur_caracteristique
-            FROM (SELECT famille, MAX(valeur_caracteristique) as Valeur_max_caracteristique
-                  FROM (SELECT *
-                        FROM Cartes
-                        INNER JOIN Carte_a_caracteristique ON Cartes.id_carte = Carte_a_caracteristique.id_carte
-                        INNER JOIN Caracteristiques ON Carte_a_caracteristique.id_caracteristique = Caracteristiques.id_caracteristique) AS GlobalTable
-                  GROUP BY famille) AS MaxTable
-            INNER JOIN GlobalTable
-                ON GlobalTable.famille = MaxTable.famille
-                AND GlobalTable.valeur_caracteristique = MaxTable.Valeur_max_caracteristique";
+$requete = "SELECT t1.famille, t1.type_caracteristique, t1.valeur_caracteristique
+            FROM Cartes_Caracteristiques_Valeurs t1
+            INNER JOIN (
+                  SELECT famille, type_caracteristique, MAX(CAST(valeur_caracteristique AS INT) AS MaxVal
+                  FROM Cartes_Caracteristiques_Valeurs
+                  GROUP BY famille
+            ) MaxTable
+            ON t1.famille = MaxTable.famille
+            WHERE CAST(t1.valeur_caracteristique AS INT) = MaxTable.MaxVal";
 
 
 if($res = $connection->query($requete))

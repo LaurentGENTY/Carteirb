@@ -4,6 +4,8 @@ SET FOREIGN_KEY_CHECKS=0;
 
 DROP VIEW IF EXISTS Joueurs_Adversaires_Victoires;
 
+DROP VIEW IF EXISTS Cartes_Caracteristiques_Valeurs;
+
 DROP TABLE IF EXISTS Carte_a_caracteristique;
 
 DROP TABLE IF EXISTS Partie_utilise_deck;
@@ -184,4 +186,14 @@ CREATE VIEW Joueurs_Adversaires_Victoires AS
   INNER JOIN Joueurs J2 ON Parties.adversaire = J2.id_joueur
   WHERE resultat = 'VICTOIRE'
   GROUP BY Joueur1, Joueur2
+);
+
+CREATE VIEW Cartes_Caracteristiques_Valeurs AS
+(
+   SELECT Cartes.id_carte, Cartes.famille, Caracteristiques.type_caracteristique, Caracteristiques.valeur_caracteristique
+   FROM Cartes 
+   INNER JOIN Carte_a_caracteristique ON Cartes.id_carte = Carte_a_caracteristique.id_carte
+   INNER JOIN Caracteristiques ON Carte_a_caracteristique.id_caracteristique = Caracteristiques.id_caracteristique
+   WHERE Caracteristiques.type_caracteristique NOT IN ('Effet', 'Effet Flip')
+   ORDER BY famille asc
 );

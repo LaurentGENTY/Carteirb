@@ -12,7 +12,7 @@ $requete = "SELECT Utilisations.titre AS Carte, CONCAT(ROUND(Nb_utilisations * 1
                 INNER JOIN Deck_contient_carte ON Cartes.id_carte = Deck_contient_carte.id_carte
                 GROUP BY Cartes.id_carte
             ) Utilisations
-            INNER JOIN (
+            LEFT JOIN (
                 SELECT id_deck, COUNT(*) AS Nb_decks
                 FROM Decks
             ) TotalDecks
@@ -35,7 +35,12 @@ if ($res = $connection->query($requete)) {
     while ($card = $res->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$card["Carte"]."</td>";
-        echo "<td>".$card["PickRate"]."</td>";
+        
+        if (is_null($card["PickRate"]))
+            echo "<td>0.00%</td>";
+        else
+            echo "<td>".$card["PickRate"]."</td>";
+        
         echo "</tr>";
     }
 
