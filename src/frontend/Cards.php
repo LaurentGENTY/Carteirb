@@ -72,19 +72,19 @@ function AddCardsForm($connection){
 function AddCaracteristic($connection, $id_card) {
   ?>
     <div class="row">
-      <form action="AddCaracteristiques.php/?id=".$id_card class="col s12" method="post">
+      <form action="/AddCaracteristiques.php?id=<?php echo $id_card?>" class="col s12" method="post">
         <div class="row">
           <div class="input-field col s6">
             <i class="material-icons prefix">title</i>
-            <input placeholder="Type de carctéristique" id="type_caracteristique" type="text" class="validate" name="type">
-            <label class="active" for="Nom">Type de carctéristique</label>
+            <input placeholder="Type de carctéristique" id="type" type="text" class="validate" name="type">
+            <label class="active" for="type">Type de carctéristique</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
               <i class="material-icons prefix">merge_type</i>
-              <input  placeholder="Valeur ou description de la caractéristique" id="valeur_caracteristique" type="text" class="validate" name="valeur">
-              <label class="active" for="typ">Valeur ou description de la caractéristique</label>
+              <input  placeholder="Valeur ou description de la caractéristique" id="valeur" type="text" class="validate" name="valeur">
+              <label class="active" for="valeur">Valeur ou description de la caractéristique</label>
             </div>
           </div>
           <button class="btn waves-effect waves-light" type="submit">Enregistrer
@@ -94,7 +94,7 @@ function AddCaracteristic($connection, $id_card) {
         </div>
   <?php
 
-      
+
   }
 
 /* Afficher tous les cartes de la BD */
