@@ -7,7 +7,7 @@ showRaresClassement($connection);
 /* Afficher les joueurs selon leur nombre de cartes rares */
 function showRaresClassement($connection) {
 
-  $requete = "SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(Exemplaires.id_exemplaire) as nbCartes
+  $requete = "SELECT Joueurs.id_joueur, Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, COUNT(*) as nbCartes
               FROM Joueurs
               INNER JOIN Exemplaires ON Joueurs.id_joueur = Exemplaires.id_joueur
               INNER JOIN Editions ON Exemplaires.id_edition = Editions.id_edition

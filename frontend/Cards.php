@@ -8,6 +8,7 @@ include "Header.php";
   <a class="waves-effect waves-light btn" href="/Pickrate.php"><i class="material-icons left">show_chart</i>Pick Rate des cartes</a>
   <a class="waves-effect waves-light btn" href="/CardsNoDeck.php"><i class="material-icons left">clear</i>Cartes dans aucun deck</a>
   <a class="waves-effect waves-light btn" href="/CardsUsedByPlayers.php"><i class="material-icons left">format_list_numbered</i>Nombre utilisations</a>
+  <a class="waves-effect waves-light btn" href="/CardsFamilies.php"><i class="material-icons left">grade</i>Meilleurs caractéristiques</a>
 </div>
 
 <?php

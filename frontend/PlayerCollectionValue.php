@@ -7,11 +7,11 @@ showCollectionValue($connection);
 /* Afficher tous les decks de la BD */
 function showCollectionValue($connection) {
 
-  $requete = "SELECT Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, SUM(Exemplaires.qualite * Carte_est_edition.cote) AS Valeur_de_la_collection, Joueurs.id_joueur
+  $requete = "SELECT Joueurs.nom, Joueurs.prenom, Joueurs.pseudo, ROUND(SUM(Exemplaires.qualite / 100 * Carte_est_edition.cote), 2) AS Valeur_de_la_collection, Joueurs.id_joueur
               FROM Joueurs
-              INNER JOIN Exemplaires on Joueurs.id_joueur = Exemplaires.id_joueur
-              INNER JOIN Editions on Exemplaires.id_edition = Editions.id_edition
-              INNER JOIN Carte_est_edition ON Editions.id_edition = Carte_est_edition.id_edition
+              LEFT JOIN Exemplaires on Joueurs.id_joueur = Exemplaires.id_joueur
+              LEFT JOIN Editions on Exemplaires.id_edition = Editions.id_edition
+              LEFT JOIN Carte_est_edition ON Editions.id_edition = Carte_est_edition.id_edition
               GROUP BY Joueurs.nom, Joueurs.prenom, Joueurs.pseudo
               ORDER BY Valeur_de_la_collection desc";
 
@@ -37,7 +37,10 @@ function showCollectionValue($connection) {
         echo "<td>".$joueur["nom"]."</td>";
         echo "<td>".$joueur["prenom"]."</td>";
         echo "<td>".$joueur["pseudo"]."</td>";
-        echo "<td>".$joueur["Valeur_de_la_collection"]."</td>";
+        if (is_null($joueur["Valeur_de_la_collection"]))
+            echo "<td>0.00</td>";
+        else
+            echo "<td>".$joueur["Valeur_de_la_collection"]."</td>";
         echo "<td><a href=\"/Exemplaires.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">call_missed_outgoing</i></a>
                   <a href=\"/DeleteJoueurs.php?id=". $joueur["id_joueur"] ."\"><i class=\"material-icons\">delete</i></a></td>";
         echo "</tr>";

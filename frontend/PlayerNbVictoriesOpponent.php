@@ -8,7 +8,8 @@ showCollectionValue($connection);
 function showCollectionValue($connection) {
 
   $requete = "SELECT *
-              FROM Joueurs_Adversaires_Victoires";
+              FROM Joueurs_Adversaires_Victoires
+              ORDER BY Victoires desc";
 
   echo "<h1> Nombre de victoires contre les opposants</h1>";
 

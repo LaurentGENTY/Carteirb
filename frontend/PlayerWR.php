@@ -17,7 +17,7 @@ function showJoueursWinrate($connection) {
                   INNER JOIN Parties ON Partie_utilise_deck.id_partie = Parties.id_partie
                   GROUP BY Joueur1
               ) Total
-              INNER JOIN (
+              LEFT JOIN (
                   SELECT CONCAT(J1.nom, ' ', J1.prenom) AS Joueur1, resultat, COUNT(*) AS Wins
                   FROM Joueurs J1
                   INNER JOIN Decks on J1.id_joueur = Decks.id_joueur
@@ -42,10 +42,15 @@ function showJoueursWinrate($connection) {
       echo "</thead>";
       echo "<tbody>";
 
-      while ($fetch = $res->fetch_assoc()) {
+      while ($joueur = $res->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>".$fetch["Joueur"]."</td>";
-            echo "<td>".$fetch["WinRate"]."</td>";
+            echo "<td>".$joueur["Joueur"]."</td>";
+
+            if (is_null($joueur["WinRate"]))
+                echo "<td>0.00%</td>";
+            else
+                echo "<td>".$joueur["WinRate"]."</td>";
+   
             echo "</tr>";
       }
       $connection->close();

@@ -1,30 +1,54 @@
 <?php
+include "connect.php";
+include "Header.php";
 
-include "../connect.php";
+echo "<h1> Meilleures caractéristiques des familles de cartes </h1>";
 
-$requete = "SELECT GlobalTable.famille, GlobalTable.type_caracteristique, GlobalTable.valeur_caracteristique
-            FROM (SELECT famille, MAX(valeur_caracteristique) as Valeur_max_caracteristique
-                  FROM (SELECT *
-                        FROM Cartes
-                        INNER JOIN Carte_a_caracteristique ON Cartes.id_carte = Carte_a_caracteristique.id_carte
-                        INNER JOIN Caracteristiques ON Carte_a_caracteristique.id_caracteristique = Caracteristiques.id_caracteristique) AS GlobalTable
-                  GROUP BY famille) AS MaxTable
-            INNER JOIN GlobalTable
-                ON GlobalTable.famille = MaxTable.famille
-                AND GlobalTable.valeur_caracteristique = MaxTable.Valeur_max_caracteristique";
+$requete = "SELECT DISTINCT t1.famille, t1.type_caracteristique, t1.valeur_caracteristique
+            FROM Cartes_Caracteristiques_Valeurs t1
+            INNER JOIN (
+                  SELECT famille, type_caracteristique, MAX(CAST(valeur_caracteristique AS UNSIGNED)) AS MaxVal
+                  FROM Cartes_Caracteristiques_Valeurs
+                  GROUP BY famille
+            ) MaxTable
+            ON t1.famille = MaxTable.famille
+            WHERE CAST(t1.valeur_caracteristique AS UNSIGNED) = MaxTable.MaxVal";
 
 
-if($res = $connection->query($requete))
+if ($res = $connection->query($requete)) {
+
+  echo "<table>";
+  echo "<thead>";
+
+  echo "<tr>";
+  echo "<th><i class=\"material-icons\">title</i>Famille</th>";
+  echo "<th><i class=\"material-icons\">title</i>Caractéristique</th>";
+  echo "<th><i class=\"material-icons\">equalizer</i>Valeur</th>";
+
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+
 /* ... on récupère un tableau stockant le résultat */
- while ($joueur =  $res->fetch_assoc()) {
-   echo "\t".'<tr><td>'.$carte['famille'].'</td>';
-   echo '<td>'.$carte['type_caracteristique'].'</td>';
-   echo '<td>'.$carte['valeur_caracteristique'].'</td>';
-   echo '</tr>'."\n";
- }
-  /*liberation de l'objet requete:*/
-  $res->free();
-  /*fermeture de la connexion avec la base*/
+  while ($card = $res->fetch_assoc()) {
+    
+    echo "<tr>";  
+    echo "<td>".$card["famille"]."</td>";
+    echo "<td>".$card["type_caracteristique"]."</td>";
+    echo "<td>".$card["valeur_caracteristique"]."</td>";
+    echo "<tr>";
+
+  }
+  
   $connection->close();
+  echo "</tbody>";
+  echo "</table>";
+
+} else {
+  echo "<tr>";  
+  echo "<p><i class=\"material-icons\">warning</i>Error while consulting database<i class=\"material-icons\">warning</i></p>";  
+  echo "<tr>";  
+
+}
 
 ?>
