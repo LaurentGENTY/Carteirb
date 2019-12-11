@@ -17,7 +17,7 @@ foreach($required as $field) {
 
 if ($error) {
   echo "All fields are required.";
-  header("Location: /Tournois.php");
+  header("Location: /Erreur.php");
   exit("All fields are required.");
 } else {
   echo "Proceed...";
