@@ -29,9 +29,9 @@ INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Offrande ulti
 
 -- kaiba
 INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Dragon blanc aux yeux bleus','Monstre','Lumi&#232re','Dragon','https://www.otk-expert.fr/cartes/yugioh/89631139.jpg');
-INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Juge','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/17985575.jpg');
-INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Seigneur des D','Monstre','T&#233n&#232bres','Magicien','https://www.otk-expert.fr/cartes/yugioh/7089711.jpg');
-INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Hane-Hane','Monstre','Terre','B&#234te','https://www.otk-expert.fr/cartes/yugioh/30113682.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Juge','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/30113682.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Seigneur des D','Monstre','T&#233n&#232bres','Magicien','https://www.otk-expert.fr/cartes/yugioh/17985575.jpg');
+INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Hane-Hane','Monstre','Terre','B&#234te','https://www.otk-expert.fr/cartes/yugioh/7089711.jpg');
 INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Ma&#238tre des pi&#232ges','Monstre','Terre','Guerrier','https://www.otk-expert.fr/cartes/yugioh/46461247.jpg');
 
 INSERT INTO Cartes(titre,type_carte,nature,famille,image) VALUES ('Fl&#251te d invocation du dragon','Magie',NULL,'Normale','https://www.otk-expert.fr/cartes/yugioh/43973174.jpg');
