@@ -45,20 +45,20 @@ if(isset($_GET["nom"]) && isset($_GET["prenom"])) {
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <label for="nom">Nom</label>
-          <input id="nom" type="text" class="validate" name="nom">
+          <label for="nom" class="active">Nom</label>
+          <input placeholder="Nom" id="nom" type="text" class="validate" name="nom">
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <label for="prenom">Prénom</label>
-          <input id="prenom" type="text" class="validate" name="prenom">
+          <label for="prenom" class="active">Prénom</label>
+          <input placeholder="Prénom" id="prenom" type="text" class="validate" name="prenom">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
-          <label for="pseudo">Pseudo</label>
-          <input id="pseudo" type="text" class="validate" name="pseudo">
+          <label for="pseudo" class="active">Pseudo</label>
+          <input placeholder="Pseudo" id="pseudo" type="text" class="validate" name="pseudo">
         </div>
       </div>
   <button class="btn waves-effect waves-light" type="submit">Se connecter

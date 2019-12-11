@@ -16,7 +16,55 @@ if(isset($_GET["id"])) {
   $id_card = $_GET["id"];
   showCard($connection,$id_card);
 } else {
+    AddCardsForm($connection);
   showCards($connection);
+}
+
+function AddCardsForm($connection){
+  ?>
+  <div class="row">
+    <form class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">title</i>
+          <input placeholder="Titre de la carte" id="titre" type="text" class="validate" name="title">
+          <label class="active" for="titre">Titre de la carte</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">merge_type</i>
+            <input  placeholder="Type de la carte" id="typ" type="text" class="validate" name="Type">
+            <label class="active" for="typ">Type de la carte</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">whatshot</i>
+          <input  placeholder="Nature de la carte" id="nat" type="text" class="validate" name="nature">
+          <label class="active" for="nat">Nature de la carte</label>
+        </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">apps</i>
+            <input  placeholder="Famille de la carte" id="fam" type="text" class="validate" name="family">
+            <label class="active" for="fam">Famille de la carte</label>
+        </div>
+      </div>
+        <div class="row">
+          <div class="input-field col s6">
+              <i class="material-icons prefix">insert_link</i>
+              <input  placeholder="Image de la carte" id="im" type="text" class="validate" name="URL">
+              <label class="active" for="im">Lien de l'image de la carte</label>
+            </div>
+          </div>
+    <button class="btn waves-effect waves-light" type="submit">Enregistrer
+      <i class="material-icons right">send</i>
+    </button>
+    </form>
+  </div>
+      <?php
 }
 
 /* Afficher tous les cartes de la BD */
@@ -25,19 +73,20 @@ function showCards($connection) {
             FROM Cartes;";
 
   if ($res = $connection->query($requete)) {
-        echo "</p>";
-        echo "<p> Titre :";
-        echo "  <form action='add_card.php' method='post'>";
-        echo "    <input type='text' name='title'/> <br/>";
-        echo "    Nature :";
-        echo "    <input type='text' name='nature'/> <br/>";
-        echo "    Famille :";
-        echo "    <input type='text' name='family'/> <br/>";
-        echo "    Type :";
-        echo "    <input type='text' name='Type'/> <br/>";
-        echo "    Image :";
-        echo "    <input type='text' name='URL'/> <br/>";
-            echo "<input type='submit' name='submit' value='Valider' /></form>";
+
+        // echo "</p>";
+        // echo "<p> Titre :";
+        // echo "  <form action='add_card.php' method='post'>";
+        // echo "    <input type='text' name='title'/> <br/>";
+        // echo "    Nature :";
+        // echo "    <input type='text' name='nature'/> <br/>";
+        // echo "    Famille :";
+        // echo "    <input type='text' name='family'/> <br/>";
+        // echo "    Type :";
+        // echo "    <input type='text' name='Type'/> <br/>";
+        // echo "    Image :";
+        // echo "    <input type='text' name='URL'/> <br/>";
+        //     echo "<input type='submit' name='submit' value='Valider' /></form>";
 
       echo "<h1> Modifier des cartes </h1>";
       echo "<table>";
