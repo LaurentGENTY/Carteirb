@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Exemplaires
    date_perte      			    TIMESTAMP,
    qualite         			    INT(3)		    not null,
    effet_impression    		    ENUM('Commune','Rare', 'Ultra Rare', 'Chromatique','X','Brillante','Collector') not null,
-   id_edition			            INT	UNSIGNED		    not null,
+   id_edition			            INT UNSIGNED		    not null,
    id_carte 			            INT UNSIGNED		    not null,
    id_joueur 		                INT UNSIGNED		    not null
 ) ENGINE = INNODB;
